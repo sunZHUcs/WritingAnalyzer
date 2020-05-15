@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="WritingAnalyzer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/WritingAnalyzer_jar</output-path>
+    <root id="archive" name="WritingAnalyzer.jar">
+      <element id="module-output" name="WritingAnalyzer" />
+      <element id="library" level="project" name="java" />
+      <element id="library" level="project" name="java2" />
+      <element id="library" level="project" name="java1" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../Program Files/Java/commons-lang3-3.10/commons-lang3-3.10.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../Program Files/Java/commons-lang3-3.10/commons-lang3-3.10-tests.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../Program Files/Java/commons-lang3-3.10/commons-lang3-3.10-javadoc.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../Program Files/Java/commons-lang3-3.10/commons-lang3-3.10-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../Program Files/Java/commons-lang3-3.10/commons-lang3-3.10-test-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../Program Files/Java/commons-io-2.6/commons-io-2.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../Program Files/Java/commons-io-2.6/commons-io-2.6-tests.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../Program Files/Java/commons-io-2.6/commons-io-2.6-javadoc.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../Program Files/Java/commons-io-2.6/commons-io-2.6-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../Program Files/Java/commons-io-2.6/commons-io-2.6-test-sources.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

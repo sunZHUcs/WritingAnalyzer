@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.util.Scanner;
 
+@SuppressWarnings("BusyWait")
 public class Messages extends Variables {
 
     private static final String compMethods = "[1] Word for word comparision against the selected Author\n[2] PRE-ALPHA: Sentence Structure.";
@@ -8,7 +9,7 @@ public class Messages extends Variables {
     private static Boolean suc = false; //Success Boolean. Used for loops in Messages.java
 
     //Introduce User and make sure they want to continue
-    public static void beginPrompt() throws InterruptedException{
+    public static void beginPrompt() throws InterruptedException {
         System.out.println("Welcome to Version " + ver + " of the Basic Writing Analyzer.");
         System.out.println("This Writing Analyzer compares your writing to that of several notable authors including:");
         System.out.println("J.K. Rowling, Rick Riordan, and Pat Rothfuss.");
@@ -28,7 +29,7 @@ public class Messages extends Variables {
                 }
                 case "yes" -> suc = true;
                 case "no", "stop", "quit" -> {
-                    System.out.println("");
+                    System.out.println();
                     System.out.println(shutdown);
                     Thread.sleep(3000);
                     System.exit(0);
@@ -40,7 +41,7 @@ public class Messages extends Variables {
     }
 
     //Tell user the gist of the program and make sure they understand
-    public static void infoSpout() throws InterruptedException{
+    public static void infoSpout() throws InterruptedException {
 
         System.out.println();
         System.out.println("This Writing Analyzer is capable of comparing your writing in 3 different ways:");
@@ -66,7 +67,7 @@ public class Messages extends Variables {
                     infoSpout();
                 }
                 case "stop", "quit" -> {
-                    System.out.println("");
+                    System.out.println();
                     System.out.println(shutdown);
                     Thread.sleep(3000);
                     System.exit(0);
@@ -79,7 +80,7 @@ public class Messages extends Variables {
 
 
     //Allow user to set Author
-    public static void setAut() throws InterruptedException{
+    public static void setAut() throws InterruptedException {
         System.out.println();
         System.out.println("Which author would you like to compare your work to? Choose from the following:");
         System.out.println(authors.toString());
@@ -107,7 +108,7 @@ public class Messages extends Variables {
                     suc = true;
                 }
                 case "stop", "quit" -> {
-                    System.out.println("");
+                    System.out.println();
                     System.out.println(shutdown);
                     Thread.sleep(3000);
                     System.exit(0);
@@ -122,7 +123,7 @@ public class Messages extends Variables {
     }
 
     //Allow user to set Comparison Method(s)
-    public static void setComp() throws InterruptedException{
+    public static void setComp() throws InterruptedException {
         System.out.println("What comparisons would you like to calculate?");
         System.out.println(compMethods);
         System.out.println("[3] All of the above.");
@@ -150,7 +151,7 @@ public class Messages extends Variables {
                     suc = true;
                 }
                 case "stop", "quit" -> {
-                    System.out.println("");
+                    System.out.println();
                     System.out.println(shutdown);
                     Thread.sleep(3000);
                     System.exit(0);
@@ -196,7 +197,7 @@ public class Messages extends Variables {
                     fixSet();
                 }
                 case "stop", "quit" -> {
-                    System.out.println("");
+                    System.out.println();
                     System.out.println(shutdown);
                     Thread.sleep(3000);
                     System.exit(0);
@@ -212,28 +213,25 @@ public class Messages extends Variables {
         boolean x = false;
         finished = true;
 
-        System.out.println("");
+        System.out.println();
         System.out.println("Would you like to compare more text?");
         Scanner s1 = new Scanner(System.in);
 
         while (!x) {
             switch (s1.nextLine().toLowerCase()) {
-                case "yes":
+                case "yes" -> {
                     restart = true;
                     Main.main(null);
                     x = true;
-                    break;
-                case "no":
-                case "stop":
-                case "quit":
+                }
+                case "no", "stop", "quit" -> {
                     x = true;
-                    System.out.println("");
+                    System.out.println();
                     System.out.println(shutdown);
                     Thread.sleep(3000);
                     System.exit(0);
-                default:
-                    System.out.println("Invalid Input!");
-                    break;
+                }
+                default -> System.out.println("Invalid Input!");
             }
         }
     }

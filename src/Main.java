@@ -9,7 +9,7 @@ public class Main extends Variables {
         //noinspection ConstantConditions
         if (!devmode) {
 
-            while(finished) {
+            while (finished) {
                 if (restart) {
                     Messages.setAut(); //Set Author
                     Messages.setComp(); //Set Comparison Method
@@ -32,7 +32,7 @@ public class Main extends Variables {
                             CompEngine.compThree(); //Compare vs Selected Author
                     }
                     Messages.compAgain();
-                }else{
+                } else {
                     System.exit(0);
                 }
             }

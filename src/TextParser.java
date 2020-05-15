@@ -22,13 +22,12 @@ public class TextParser extends Variables {
         while (!t) {
             if (in.exists()) {
                 t = true;
-            }else if(input.equalsIgnoreCase("stop") && input.equalsIgnoreCase("quit")){
-                System.out.println("");
+            } else if (input.equalsIgnoreCase("stop") && input.equalsIgnoreCase("quit")) {
+                System.out.println();
                 System.out.println("Program shutting down");
                 Thread.sleep(3000);
                 System.exit(0);
-            }
-            else {
+            } else {
                 System.out.println("Invalid File Path!");
                 input = s1.nextLine();
                 input = input.replaceAll("\"", "");

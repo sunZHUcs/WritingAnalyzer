@@ -1,3 +1,5 @@
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -21,6 +23,14 @@ public class Variables {
     public static final Map<String, Double> pat = new LinkedHashMap<>(); //Statistics of Patrick Rothfuss
     public static final Map<String, Double> jk = new LinkedHashMap<>(); //Statistics of J.K. Rowling
     public static final Map<String, Double> rick = new LinkedHashMap<>(); //Statistics of Rick Riordan
+
+    //ACTUALLY USED VARIABLES:
+
+    public static final ArrayList<String> awords = new ArrayList<>();
+    public static final ArrayList<String> astats = new ArrayList<>();
+    public static final ArrayList<String> acwords = new ArrayList<>();
+    public static final ArrayList<String> acstats = new ArrayList<>();
+    public static final Map<String, Double> auth = new LinkedHashMap<>();
     public static ArrayList<String> keys; //Top 3 most used words
     public static ArrayList<Double> values; //Numbers of uses for most used words
     public static ArrayList<String> ckeys; //Top 3 most used words excluding conjunctions and common words
@@ -39,4 +49,12 @@ public class Variables {
     public static double sper100; //sentences per 100 words
     public static boolean restart = false;
     public static boolean finished = false;
+
+
+    @SuppressWarnings("UnusedAssignment")
+    static void roundDouble(Double x) {
+        BigDecimal b1 = new BigDecimal(Double.toString(x));
+        b1 = b1.setScale(2, RoundingMode.HALF_UP);
+        x = b1.doubleValue();
+    }
 }

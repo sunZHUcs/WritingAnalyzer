@@ -31,7 +31,7 @@ public class Messages extends Variables {
                 case "no", "stop", "quit" -> {
                     System.out.println();
                     System.out.println(shutdown);
-                    Thread.sleep(3000);
+                    Thread.sleep(1500);
                     System.exit(0);
                 }
             }
@@ -69,7 +69,7 @@ public class Messages extends Variables {
                 case "stop", "quit" -> {
                     System.out.println();
                     System.out.println(shutdown);
-                    Thread.sleep(3000);
+                    Thread.sleep(1500);
                     System.exit(0);
                 }
             }
@@ -110,7 +110,7 @@ public class Messages extends Variables {
                 case "stop", "quit" -> {
                     System.out.println();
                     System.out.println(shutdown);
-                    Thread.sleep(3000);
+                    Thread.sleep(1500);
                     System.exit(0);
                 }
             }
@@ -153,7 +153,7 @@ public class Messages extends Variables {
                 case "stop", "quit" -> {
                     System.out.println();
                     System.out.println(shutdown);
-                    Thread.sleep(3000);
+                    Thread.sleep(1500);
                     System.exit(0);
                 }
             }
@@ -199,7 +199,7 @@ public class Messages extends Variables {
                 case "stop", "quit" -> {
                     System.out.println();
                     System.out.println(shutdown);
-                    Thread.sleep(3000);
+                    Thread.sleep(1500);
                     System.exit(0);
                 }
             }
@@ -228,7 +228,7 @@ public class Messages extends Variables {
                     x = true;
                     System.out.println();
                     System.out.println(shutdown);
-                    Thread.sleep(3000);
+                    Thread.sleep(1500);
                     System.exit(0);
                 }
                 default -> System.out.println("Invalid Input!");

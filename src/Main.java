@@ -1,3 +1,5 @@
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 
 public class Main extends Variables {
@@ -15,6 +17,7 @@ public class Main extends Variables {
                     Messages.setComp(); //Set Comparison Method
                     Messages.fixSet(); //Confirm Settings
                     TextParser.removeEnter();
+                    TextParser.parseAut();
                     switch (comp) {
                         case 1:
                             TextReader.wfw(); //Word for Word Comparison
@@ -45,6 +48,7 @@ public class Main extends Variables {
             Messages.setComp(); //Set Comparison Method
             Messages.fixSet(); //Confirm Settings
             TextParser.removeEnter();
+            TextParser.parseAut();
             switch (comp) {
                 case 1:
                     TextReader.wfw(); //Word for Word Comparison

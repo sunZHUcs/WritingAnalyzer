@@ -4,7 +4,7 @@ public class Main extends VarFunc {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
-        boolean devmode = true;
+        boolean devmode = false;
 
         //noinspection ConstantConditions
         if (!devmode) {
@@ -75,8 +75,8 @@ public class Main extends VarFunc {
             TextReader.authorList();
             TextReader.getStat();
             Messages.setAut();
-            TextParser.removeEnter();
             TextParser.parseAut();
+            TextParser.removeEnter();
             TextReader.wfw();
             TextReader.conjWfw();
             CompEngine.compOne();
@@ -84,6 +84,7 @@ public class Main extends VarFunc {
 
         //TODO: MINIMIZE CODE
         //TODO: IDEA - Number of unique words comparison
+        //TODO: Fix invalid words
         //TODO: Code Cleanup (Always)
 
     }

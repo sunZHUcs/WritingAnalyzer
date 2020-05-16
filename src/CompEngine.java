@@ -16,7 +16,7 @@ public class CompEngine extends VarFunc {
         header.append("|");
 
         System.out.println();
-        System.out.println("Top 3 Most Used Words");
+        System.out.println("Top 3 Most Used Words. [Word (Num of Uses/1000 Words)]");
         System.out.println(break1);
         System.out.println(header);
         System.out.println(break2);
@@ -26,7 +26,6 @@ public class CompEngine extends VarFunc {
             Double value = values.get(i);
             String akey = awords.get(i);
             double avalue = Double.parseDouble(astats.get(i));
-            roundDouble(value);
 
             String part1 = key + " (" + value + ")";
             String part2 = akey + " (" + avalue + ")";
@@ -39,7 +38,7 @@ public class CompEngine extends VarFunc {
         System.out.println(break1);
 
         System.out.println();
-        System.out.println("Top 3 Most Used Words Excluding Conjunctions and Common Words");
+        System.out.println("Top 3 Most Used Words Excluding Conjunctions \nand Common Words. [Word (Num of Uses/1000 Words)]");
         System.out.println(break1);
         System.out.println(header);
         System.out.println(break2);
@@ -49,7 +48,6 @@ public class CompEngine extends VarFunc {
             Double value = cvalues.get(i);
             String akey = acwords.get(i);
             double avalue = Double.parseDouble(acstats.get(i));
-            roundDouble(value);
 
             String part1 = key + " (" + value + ")";
             String part2 = akey + " (" + avalue + ")";
@@ -59,6 +57,53 @@ public class CompEngine extends VarFunc {
 
             System.out.println("| " + part1 + separator + part2 + "|");
         }
+        System.out.println(break1);
+
+
+        String header1 = "|                    | YOU:";
+        String header2 = author.toUpperCase() + ":";
+        String header3 = "% of Author";
+        header1 = constAppend(header1, 45);
+        header2 = constAppend(header2, 19);
+        header3 = constAppend(header3, 11);
+        String header4 = appendMachine(header1, header2, header3, separator, " |");
+
+
+        break1 = "=====================================================================================";
+        break2 = "-------------------------------------------------------------------------------------";
+        System.out.println();
+        System.out.println("Other Statistics. [Word (Num of Uses)]");
+        System.out.println(break1);
+        System.out.println(header4);
+        System.out.println(break2);
+
+        String key = keys.get(3);
+        Double value = values.get(3);
+        String akey = awords.get(3);
+        String avalue = astats.get(3);
+
+        //TODO: FINISH OUTPUT BOX
+
+        String per = mathEngine(uni, auth.get("uni"));
+
+        String one = "| Least Used Word     |  " + key + " (" + value + ")";
+        String two = akey + " (" + avalue + ")";
+        String three = "| # of Unique Words   |  " + uni;
+        String NA = "N/A";
+        String four = String.valueOf(auth.get("uni"));
+        String five = per;
+
+        one = constAppend(one, 45);
+        two = constAppend(two, 19);
+        three = constAppend(three, 45);
+        four = constAppend(four, 19);
+        five = constAppend(five, 11);
+        NA = constAppend(NA, 11);
+
+        one = appendMachine(one, two, NA, separator, " |");
+        two = appendMachine(three, four, five, separator, " |");
+        System.out.println(one);
+        System.out.println(two);
         System.out.println(break1);
     }
 
@@ -82,18 +127,18 @@ public class CompEngine extends VarFunc {
         String header1 = "|                                  | YOU:    ";
         String header2 = author.toUpperCase() + ":";
         String header3 = "% of Author";
-        String one = "|Avg. Characters Per Sentence      |  " + l;
-        String two = " " + q;
-        String three = " " + x;
-        String four = "|Avg. Sentences Per 100 Characters |  " + per100;
-        String five = " " + e;
-        String six = " " + y;
-        String seven = "|Avg. Words Per Sentence           |  " + w;
-        String eight = " " + r;
-        String nine = " " + z;
-        String ten = "|Avg. Sentences Per 100 Words      |  " + sper100;
-        String eleven = " " + t;
-        String twelve = " " + k;
+        String one = "| Avg. Characters Per Sentence      |  " + l;
+        String two = q;
+        String three = x;
+        String four = "| Avg. Sentences Per 100 Characters |  " + per100;
+        String five = e;
+        String six = y;
+        String seven = "| Avg. Words Per Sentence           |  " + w;
+        String eight = r;
+        String nine = z;
+        String ten = "| Avg. Sentences Per 100 Words      |  " + sper100;
+        String eleven = t;
+        String twelve = k;
 
         header2 = constAppend(header2, 19);
         header3 = constAppend(header3, 11);

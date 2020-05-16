@@ -107,12 +107,25 @@ public class TextReader extends VarFunc {
                 repetitions.put(word, 1);
         }
 
+        uni = Double.parseDouble(String.valueOf(repetitions.size()));
+
         Map<String, Integer> topThree =
                 repetitions.entrySet().stream()
                         .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                         .limit(3)
                         .collect(Collectors.toMap(
                                 Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+
+        String minKey = null;
+        int minValue = Integer.MAX_VALUE;
+        for (String key : repetitions.keySet()) {
+            int value = repetitions.get(key);
+            if (value < minValue) {
+                minValue = value;
+                minKey = key;
+            }
+
+        }
 
         keys = new ArrayList<>(topThree.keySet());
         prevalues = new ArrayList<>(topThree.values());
@@ -127,6 +140,8 @@ public class TextReader extends VarFunc {
             values.add(x);
 
         }
+        keys.add(minKey);
+        values.add((double) minValue);
     }
 
     public static void conjWfw() throws IOException {
@@ -193,24 +208,16 @@ public class TextReader extends VarFunc {
                 while ((line = reader.readLine()) != null) {
                     if (line.contains(":")) {
                         String[] temp = line.split(":");
-                        pwords.add(temp[0]);
-                        pwords.add(temp[1]);
-                        pwords.add(temp[2]);
+                        pwords.addAll(Arrays.asList(temp));
                     } else if (line.contains("-")) {
                         String[] temp = line.split("-");
-                        pcwords.add(temp[0]);
-                        pcwords.add(temp[1]);
-                        pcwords.add(temp[2]);
+                        pcwords.addAll(Arrays.asList(temp));
                     } else if (line.contains("!")) {
                         String[] temp = line.split("!");
-                        pstats.add(temp[0]);
-                        pstats.add(temp[1]);
-                        pstats.add(temp[2]);
+                        pstats.addAll(Arrays.asList(temp));
                     } else if (line.contains("?")) {
                         String[] temp = line.split("[?]");
-                        pcstats.add(temp[0]);
-                        pcstats.add(temp[1]);
-                        pcstats.add(temp[2]);
+                        pcstats.addAll(Arrays.asList(temp));
                     } else {
                         String[] temp = line.split("=");
                         pat.put(temp[0], Double.parseDouble(temp[1]));
@@ -223,27 +230,19 @@ public class TextReader extends VarFunc {
                 while ((line = reader.readLine()) != null) {
                     if (line.contains(":")) {
                         String[] temp = line.split(":");
-                        jwords.add(temp[0]);
-                        jwords.add(temp[1]);
-                        jwords.add(temp[2]);
+                        jwords.addAll(Arrays.asList(temp));
                     } else if (line.contains("-")) {
                         String[] temp = line.split("-");
-                        jcwords.add(temp[0]);
-                        jcwords.add(temp[1]);
-                        jcwords.add(temp[2]);
+                        jcwords.addAll(Arrays.asList(temp));
                     } else if (line.contains("!")) {
                         String[] temp = line.split("!");
-                        jstats.add(temp[0]);
-                        jstats.add(temp[1]);
-                        jstats.add(temp[2]);
+                        jstats.addAll(Arrays.asList(temp));
                     } else if (line.contains("?")) {
                         String[] temp = line.split("[?]");
-                        jcstats.add(temp[0]);
-                        jcstats.add(temp[1]);
-                        jcstats.add(temp[2]);
+                        jcstats.addAll(Arrays.asList(temp));
                     } else {
                         String[] temp = line.split("=");
-                        jk.put(temp[0], Double.parseDouble(temp[1]));
+                        pat.put(temp[0], Double.parseDouble(temp[1]));
                     }
                 }
             } else {
@@ -253,27 +252,19 @@ public class TextReader extends VarFunc {
                 while ((line = reader.readLine()) != null) {
                     if (line.contains(":")) {
                         String[] temp = line.split(":");
-                        rwords.add(temp[0]);
-                        rwords.add(temp[1]);
-                        rwords.add(temp[2]);
+                        rwords.addAll(Arrays.asList(temp));
                     } else if (line.contains("-")) {
                         String[] temp = line.split("-");
-                        rcwords.add(temp[0]);
-                        rcwords.add(temp[1]);
-                        rcwords.add(temp[2]);
+                        rcwords.addAll(Arrays.asList(temp));
                     } else if (line.contains("!")) {
                         String[] temp = line.split("!");
-                        rstats.add(temp[0]);
-                        rstats.add(temp[1]);
-                        rstats.add(temp[2]);
+                        rstats.addAll(Arrays.asList(temp));
                     } else if (line.contains("?")) {
                         String[] temp = line.split("[?]");
-                        rcstats.add(temp[0]);
-                        rcstats.add(temp[1]);
-                        rcstats.add(temp[2]);
+                        rcstats.addAll(Arrays.asList(temp));
                     } else {
                         String[] temp = line.split("=");
-                        rick.put(temp[0], Double.parseDouble(temp[1]));
+                        pat.put(temp[0], Double.parseDouble(temp[1]));
                     }
                 }
             }

@@ -1,8 +1,9 @@
-the:to:and
-44.7!24.78!22.58
+the:to:and:signposted
+44.7!24.78!22.58!1.00
 harry-not-hermione
 11.27?5.55?3.54
 car=64.79
 per100=1.54
 words=13.07
 sper100=7.65
+uni=20877

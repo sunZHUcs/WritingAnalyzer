@@ -2,8 +2,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -52,14 +50,10 @@ public class TextReader extends VarFunc {
         }
 
         l = car / (sentences.size() - i);
-        BigDecimal b1 = new BigDecimal(Double.toString(l));
-        b1 = b1.setScale(2, RoundingMode.HALF_UP);
-        l = b1.doubleValue();
+        roundDouble(l);
 
         per100 = 100 / l;
-        b1 = new BigDecimal(Double.toString(per100));
-        b1 = b1.setScale(2, RoundingMode.HALF_UP);
-        per100 = b1.doubleValue();
+        roundDouble(per100);
 
     }
 
@@ -88,14 +82,11 @@ public class TextReader extends VarFunc {
         }
 
         w = words / (sentences.size() - i);
-        BigDecimal b1 = new BigDecimal(Double.toString(w));
-        b1 = b1.setScale(2, RoundingMode.HALF_UP);
-        w = b1.doubleValue();
+        roundDouble(w);
 
         sper100 = 100 / w;
-        b1 = new BigDecimal(Double.toString(sper100));
-        b1 = b1.setScale(2, RoundingMode.HALF_UP);
-        sper100 = b1.doubleValue();
+        roundDouble(sper100);
+
     }
 
     public static void wfw() {
@@ -131,10 +122,7 @@ public class TextReader extends VarFunc {
 
             x = x / words.length;
             x = x * 1000;
-
-            BigDecimal b1 = new BigDecimal(Double.toString(x));
-            b1 = b1.setScale(2, RoundingMode.HALF_UP);
-            x = b1.doubleValue();
+            roundDouble(x);
             values.add(x);
 
         }
@@ -187,10 +175,7 @@ public class TextReader extends VarFunc {
 
             x = x / words.length;
             x = x * 1000;
-
-            BigDecimal b1 = new BigDecimal(Double.toString(x));
-            b1 = b1.setScale(2, RoundingMode.HALF_UP);
-            x = b1.doubleValue();
+            roundDouble(x);
             cvalues.add(x);
 
         }

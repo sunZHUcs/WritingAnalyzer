@@ -7,7 +7,6 @@ import java.util.Map;
 public class VarFunc {
 
     //USED VARIABLES:
-
     public static final ArrayList<String> awords = new ArrayList<>(); //Selected Author's top 3 words
     public static final ArrayList<String> astats = new ArrayList<>(); //Selected Author's num of uses for "awords"
     public static final ArrayList<String> acwords = new ArrayList<>(); //Selected Author's top 3 words excluding conjunctions
@@ -46,24 +45,40 @@ public class VarFunc {
     public static double per100; //sentences per 100 characters
     public static double w; //words per sentence
     public static double sper100; //sentences per 100 words
+    public static double x; //Used for loop in TextReader, universal to utilize roundDouble function
     public static boolean restart = false; //Condition to restart program
     public static boolean finished = false; //Has the program finished at least once
 
-    @SuppressWarnings("UnusedAssignment")
-    public static void roundDouble(Double x) {
+    public static Double roundDouble(Double x) {
         BigDecimal b1 = new BigDecimal(Double.toString(x));
         b1 = b1.setScale(2, RoundingMode.HALF_UP);
         x = b1.doubleValue();
+        return x;
     }
 
-    @SuppressWarnings("UnusedAssignment")
-    public static void mathEngine(Double x, Double y) {
+    public static String appendMachine(String one, String two, String three, String separator, String end) {
+        return one + separator + two + separator + three + end;
+    }
+
+    public static String constAppend(String x, int y) {
+        StringBuilder s1 = new StringBuilder();
+        s1.append(x);
+
+        while (s1.length() < y) {
+            s1.append(" ");
+        }
+
+        return String.valueOf(s1);
+    }
+
+    public static String mathEngine(Double x, Double y) {
         double z;
         z = x / y;
         z = z * 100;
-        VarFunc.roundDouble(z);
+        z = VarFunc.roundDouble(z);
         String k = String.valueOf(z);
         k = k + "%";
+        return k;
     }
 
 }

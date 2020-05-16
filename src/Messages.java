@@ -4,7 +4,7 @@ import java.util.Scanner;
 @SuppressWarnings("BusyWait")
 public class Messages extends VarFunc {
 
-    private static final String compMethods = "[1] Word for word comparision against the selected Author\n[2] BETA: Sentence Structure.";
+    private static final String compMethods = "[0] All Methods\n[1] Word for Word comparision\n[2] BETA: Sentence Structure\n------------------------------";
     private static final String shutdown = "Program shutting down";
     private static final String ver = "0.01";
     private static Boolean suc = false;
@@ -47,8 +47,10 @@ public class Messages extends VarFunc {
         System.out.println();
         System.out.println("This Writing Analyzer is capable of comparing your writing in 3 different ways:");
         System.out.println(compMethods);
+        System.out.println("To input your writing, make sure that it's in a readable Text (.txt) file and enter");
+        System.out.println("the file path when prompted to.");
         System.out.println();
-        System.out.println("Please respond with \"Yes\" or \"No\" to confirm your understanding.");
+        System.out.println("Do you understand? Enter \"Yes\", \"Confirm\", or \"No\".");
 
         Scanner s2 = new Scanner(System.in);
         input = s2.nextLine();
@@ -60,7 +62,7 @@ public class Messages extends VarFunc {
                     System.out.println("Invalid Input!");
                     input = s2.nextLine();
                 }
-                case "yes" -> suc = true;
+                case "yes", "confirm" -> suc = true;
                 case "no" -> {
                     System.out.println("The program will now reprint the information spout");
                     input = null;
@@ -126,7 +128,6 @@ public class Messages extends VarFunc {
     //Allow user to set Comparison Method(s)
     public static void setComp() throws InterruptedException {
         System.out.println("What comparisons would you like to calculate?");
-        System.out.println("[0] All of the above.");
         System.out.println(compMethods);
 
         Scanner s4 = new Scanner(System.in);
@@ -169,9 +170,9 @@ public class Messages extends VarFunc {
         System.out.println("You have selected the Author " + author.toUpperCase() + " and the comparison(s): ");
 
         switch (comp) {
-            case 0 -> System.out.println("Word for Word Comparison, Sentence Structure Comparison, and Number of verbs, nouns, etc. Comparison");
+            case 0 -> System.out.println("Word for Word Comparison and Sentence Structure Comparison");
             case 1 -> System.out.println("[1] Word for Word Comparision");
-            case 2 -> System.out.println("[2] BETA: Sentence Structure Comparison.");
+            case 2 -> System.out.println("[2] BETA: Sentence Structure Comparison");
         }
 
         System.out.println();

@@ -50,10 +50,10 @@ public class TextReader extends VarFunc {
         }
 
         l = car / (sentences.size() - i);
-        roundDouble(l);
+        l = VarFunc.roundDouble(l);
 
         per100 = 100 / l;
-        roundDouble(per100);
+        per100 = VarFunc.roundDouble(per100);
 
     }
 
@@ -82,10 +82,10 @@ public class TextReader extends VarFunc {
         }
 
         w = words / (sentences.size() - i);
-        roundDouble(w);
+        w = VarFunc.roundDouble(w);
 
         sper100 = 100 / w;
-        roundDouble(sper100);
+        sper100 = VarFunc.roundDouble(sper100);
 
     }
 
@@ -118,11 +118,12 @@ public class TextReader extends VarFunc {
         prevalues = new ArrayList<>(topThree.values());
         values = new ArrayList<>(prevalues.size());
 
-        for (double x : prevalues) {
+        for (Integer prevalue : prevalues) {
 
+            x = prevalue;
             x = x / words.length;
             x = x * 1000;
-            roundDouble(x);
+            x = VarFunc.roundDouble(x);
             values.add(x);
 
         }
@@ -171,11 +172,12 @@ public class TextReader extends VarFunc {
         precvalues = new ArrayList<>(topThree.values());
         cvalues = new ArrayList<>(prevalues.size());
 
-        for (double x : precvalues) {
+        for (Integer precvalue : precvalues) {
 
+            x = precvalue;
             x = x / words.length;
             x = x * 1000;
-            roundDouble(x);
+            x = VarFunc.roundDouble(x);
             cvalues.add(x);
 
         }

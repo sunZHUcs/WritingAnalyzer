@@ -4,7 +4,7 @@ public class Main extends VarFunc {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
-        boolean devmode = false;
+        boolean devmode = true;
 
         //noinspection ConstantConditions
         if (!devmode) {
@@ -25,14 +25,14 @@ public class Main extends VarFunc {
                             CompEngine.compZero();
                         }
                         case 1 -> {
-                            TextReader.sentcarLength();
-                            TextReader.sentwordLength();
-                            CompEngine.compTwo();
-                        }
-                        case 2 -> {
                             TextReader.wfw();
                             TextReader.conjWfw();
                             CompEngine.compOne();
+                        }
+                        case 2 -> {
+                            TextReader.sentcarLength();
+                            TextReader.sentwordLength();
+                            CompEngine.compTwo();
                         }
                     }
                     Messages.compAgain();
@@ -59,30 +59,31 @@ public class Main extends VarFunc {
                     CompEngine.compZero();
                 }
                 case 1 -> {
-                    TextReader.sentcarLength();
-                    TextReader.sentwordLength();
-                    CompEngine.compTwo();
-                }
-                case 2 -> {
                     TextReader.wfw();
                     TextReader.conjWfw();
                     CompEngine.compOne();
+                }
+                case 2 -> {
+                    TextReader.sentcarLength();
+                    TextReader.sentwordLength();
+                    CompEngine.compTwo();
                 }
             }
             Messages.compAgain();
 
         } else {
+            TextReader.authorList();
             TextReader.getStat();
             Messages.setAut();
             TextParser.removeEnter();
-            TextReader.sentcarLength();
-            TextReader.sentwordLength();
-            CompEngine.compTwo();
+            TextParser.parseAut();
+            TextReader.wfw();
+            TextReader.conjWfw();
+            CompEngine.compOne();
         }
 
         //TODO: MINIMIZE CODE
-        //TODO: Recheck all Code
-        //TODO: Do logic flow check
+        //TODO: IDEA - Number of unique words comparison
         //TODO: Code Cleanup (Always)
 
     }

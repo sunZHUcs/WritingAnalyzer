@@ -12,6 +12,7 @@ sad
 he
 she
 his
+him
 her
 they
 said
@@ -24,5 +25,18 @@ my
 me
 as
 that
+at
+with
+had
+for
+on
+like
+if
+when
+what
+from
+be
+were
+is
 -
 '

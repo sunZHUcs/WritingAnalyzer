@@ -1,6 +1,6 @@
 import java.io.IOException;
 
-public class Main extends Variables {
+public class Main extends VarFunc {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
@@ -11,26 +11,26 @@ public class Main extends Variables {
 
             while (finished) {
                 if (restart) {
-                    Messages.setAut(); //Set Author
-                    Messages.setComp(); //Set Comparison Method
-                    Messages.fixSet(); //Confirm Settings
+                    Messages.setAut();
+                    Messages.setComp();
+                    Messages.fixSet();
                     TextParser.removeEnter();
                     TextParser.parseAut();
                     switch (comp) {
                         case 0:
-                            TextReader.wfw(); //Word for Word Comparison
-                            TextReader.conjWfw(); //Word for Word Comparison excluding Conjunctions and Common Words
-                            TextReader.sentcarLength(); //Calculate Sentence Stats w/Characters
-                            TextReader.sentwordLength(); //Calculate Sentence Stats w/Words
-                            CompEngine.compZero(); //Compare vs Selected Author
+                            TextReader.wfw();
+                            TextReader.conjWfw();
+                            TextReader.sentcarLength();
+                            TextReader.sentwordLength();
+                            CompEngine.compZero();
                         case 1:
-                            TextReader.sentcarLength(); //Calculate Sentence Stats w/Characters
-                            TextReader.sentwordLength(); //Calculate Sentence Stats w/Words
-                            CompEngine.compTwo(); //Compare vs Selected Author
+                            TextReader.sentcarLength();
+                            TextReader.sentwordLength();
+                            CompEngine.compTwo();
                         case 2:
-                            TextReader.wfw(); //Word for Word Comparison
-                            TextReader.conjWfw(); //Word for Word Comparison excluding Conjunctions and Common Words
-                            CompEngine.compOne(); //Compare vs Selected Author
+                            TextReader.wfw();
+                            TextReader.conjWfw();
+                            CompEngine.compOne();
                     }
                     Messages.compAgain();
                 } else {
@@ -38,30 +38,30 @@ public class Main extends Variables {
                 }
             }
 
-            TextReader.getStat(); //Get all Author statistics
-            TextReader.authorList(); //Parse list of authors
-            Messages.beginPrompt(); //Introduction
-            Messages.infoSpout(); //Basic System Run through
-            Messages.setAut(); //Set Author
-            Messages.setComp(); //Set Comparison Method
-            Messages.fixSet(); //Confirm Settings
+            TextReader.getStat();
+            TextReader.authorList();
+            Messages.beginPrompt();
+            Messages.infoSpout();
+            Messages.setAut();
+            Messages.setComp();
+            Messages.fixSet();
             TextParser.removeEnter();
             TextParser.parseAut();
             switch (comp) {
                 case 0:
-                    TextReader.wfw(); //Word for Word Comparison
-                    TextReader.conjWfw(); //Word for Word Comparison excluding Conjunctions and Common Words
-                    TextReader.sentcarLength(); //Calculate Sentence Stats w/Characters
-                    TextReader.sentwordLength(); //Calculate Sentence Stats w/Words
-                    CompEngine.compZero(); //Compare vs Selected Author
+                    TextReader.wfw();
+                    TextReader.conjWfw();
+                    TextReader.sentcarLength();
+                    TextReader.sentwordLength();
+                    CompEngine.compZero();
                 case 1:
-                    TextReader.sentcarLength(); //Calculate Sentence Stats w/Characters
-                    TextReader.sentwordLength(); //Calculate Sentence Stats w/Words
-                    CompEngine.compTwo(); //Compare vs Selected Author
+                    TextReader.sentcarLength();
+                    TextReader.sentwordLength();
+                    CompEngine.compTwo();
                 case 2:
-                    TextReader.wfw(); //Word for Word Comparison
-                    TextReader.conjWfw(); //Word for Word Comparison excluding Conjunctions and Common Words
-                    CompEngine.compOne(); //Compare vs Selected Author
+                    TextReader.wfw();
+                    TextReader.conjWfw();
+                    CompEngine.compOne();
             }
             Messages.compAgain();
 

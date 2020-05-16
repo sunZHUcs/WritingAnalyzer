@@ -2,11 +2,12 @@ import java.io.IOException;
 import java.util.Scanner;
 
 @SuppressWarnings("BusyWait")
-public class Messages extends Variables {
+public class Messages extends VarFunc {
 
     private static final String compMethods = "[1] Word for word comparision against the selected Author\n[2] PRE-ALPHA: Sentence Structure.";
-    private static final String shutdown = "Program shutting down"; //Universal shutdown message
-    private static Boolean suc = false; //Success Boolean. Used for loops in Messages.java
+    private static final String shutdown = "Program shutting down";
+    private static final String ver = "0.01";
+    private static Boolean suc = false;
 
     //Introduce User and make sure they want to continue
     public static void beginPrompt() throws InterruptedException {

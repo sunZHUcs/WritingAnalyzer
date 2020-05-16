@@ -7,15 +7,14 @@ import java.math.RoundingMode;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class TextReader extends Variables {
+public class TextReader extends VarFunc {
 
     private static final InputStream list = TextReader.class.getClassLoader().getResourceAsStream("resources/authors.txt");
-    private static final InputStream patin = TextReader.class.getClassLoader().getResourceAsStream("resources/pat.txt"); //Patrick Rothfuss Statistic File Location
-    private static final InputStream jkin = TextReader.class.getClassLoader().getResourceAsStream("resources/jk.txt"); //J.K. Rowling Statistic File Location
-    private static final InputStream rickin = TextReader.class.getClassLoader().getResourceAsStream("resources/rick.txt"); //Rick Riordan Statistic File Location
+    private static final InputStream patin = TextReader.class.getClassLoader().getResourceAsStream("resources/pat.txt");
+    private static final InputStream jkin = TextReader.class.getClassLoader().getResourceAsStream("resources/jk.txt");
+    private static final InputStream rickin = TextReader.class.getClassLoader().getResourceAsStream("resources/rick.txt");
     private static List<String> sentences = new LinkedList<>(Arrays.asList(text.split("[!.?]")));
 
-    //Add all authors in text file to arraylist
     public static void authorList() throws IOException {
 
         if (!(list == null)) {
@@ -31,14 +30,6 @@ public class TextReader extends Variables {
         }
     }
 
-
-    /*
-    Calculates:
-    Average number of characters per sentence
-    Average number of sentences per 100 characters
-    Average number of words per sentence
-    Average number of words per 100 characters
-     */
     public static void sentcarLength() {
         int i = 0;
         double car = 0;
@@ -70,11 +61,6 @@ public class TextReader extends Variables {
         b1 = b1.setScale(2, RoundingMode.HALF_UP);
         per100 = b1.doubleValue();
 
-        /*
-        System.out.println(l);
-        System.out.println(per100);
-
-         */
     }
 
     public static void sentwordLength() {
@@ -110,18 +96,8 @@ public class TextReader extends Variables {
         b1 = new BigDecimal(Double.toString(sper100));
         b1 = b1.setScale(2, RoundingMode.HALF_UP);
         sper100 = b1.doubleValue();
-
-        /*
-        System.out.println(w);
-        System.out.println(sper100);
-
-         */
     }
 
-    /*
-    Calculates:
-    Top three most used words
-     */
     public static void wfw() {
 
         washedinput = text.replaceAll("[!.?]", "");
@@ -162,18 +138,8 @@ public class TextReader extends Variables {
             values.add(x);
 
         }
-
-        /*
-        System.out.println(keys);
-        System.out.println(values);
-
-         */
     }
 
-    /*
-    Calculates:
-    Top three most used words excluding conjunctions and common words
-     */
     public static void conjWfw() throws IOException {
 
         washedinput = text.replaceAll("[!.?]", "");
@@ -228,18 +194,8 @@ public class TextReader extends Variables {
             cvalues.add(x);
 
         }
-
-        /*
-        System.out.println(ckeys);
-        System.out.println(cvalues);
-
-         */
     }
 
-    /*
-    Retrieves:
-    All Author Statistics and shuffles them into hashmaps
-    */
     public static void getStat() throws IOException {
 
         for (int i = 0; i < 3; i++) {

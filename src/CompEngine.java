@@ -1,5 +1,5 @@
 @SuppressWarnings("SuspiciousNameCombination")
-public class CompEngine extends Variables {
+public class CompEngine extends VarFunc {
 
 
     static void compZero() {
@@ -38,22 +38,22 @@ public class CompEngine extends Variables {
     static void compTwo() {
         double x = l / auth.get("car");
         x = x * 100;
-        Variables.roundDouble(x);
+        VarFunc.roundDouble(x);
         String xx = String.valueOf(x);
         xx = xx + "%";
         double y = per100 / auth.get("per100");
         y = y * 100;
-        Variables.roundDouble(y);
+        VarFunc.roundDouble(y);
         String yy = String.valueOf(y);
         yy = yy + "%";
         double z = w / auth.get("words");
         z = z * 100;
-        Variables.roundDouble(z);
+        VarFunc.roundDouble(z);
         String zz = String.valueOf(z);
         zz = zz + "%";
         double k = sper100 / auth.get("sper100");
         k = k * 100;
-        Variables.roundDouble(k);
+        VarFunc.roundDouble(k);
         String kk = String.valueOf(k);
         kk = kk + "%";
         String q = String.valueOf(auth.get("car"));

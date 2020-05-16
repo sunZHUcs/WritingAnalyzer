@@ -17,23 +17,23 @@ public class Main extends VarFunc {
                     TextParser.removeEnter();
                     TextParser.parseAut();
                     switch (comp) {
-                        case 0:
+                        case 0 -> {
                             TextReader.wfw();
                             TextReader.conjWfw();
                             TextReader.sentcarLength();
                             TextReader.sentwordLength();
                             CompEngine.compZero();
-                            break;
-                        case 1:
+                        }
+                        case 1 -> {
                             TextReader.sentcarLength();
                             TextReader.sentwordLength();
                             CompEngine.compTwo();
-                            break;
-                        case 2:
+                        }
+                        case 2 -> {
                             TextReader.wfw();
                             TextReader.conjWfw();
                             CompEngine.compOne();
-                            break;
+                        }
                     }
                     Messages.compAgain();
                 } else {
@@ -51,23 +51,23 @@ public class Main extends VarFunc {
             TextParser.removeEnter();
             TextParser.parseAut();
             switch (comp) {
-                case 0:
+                case 0 -> {
                     TextReader.wfw();
                     TextReader.conjWfw();
                     TextReader.sentcarLength();
                     TextReader.sentwordLength();
                     CompEngine.compZero();
-                    break;
-                case 1:
+                }
+                case 1 -> {
                     TextReader.sentcarLength();
                     TextReader.sentwordLength();
                     CompEngine.compTwo();
-                    break;
-                case 2:
+                }
+                case 2 -> {
                     TextReader.wfw();
                     TextReader.conjWfw();
                     CompEngine.compOne();
-                    break;
+                }
             }
             Messages.compAgain();
 

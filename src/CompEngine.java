@@ -1,4 +1,3 @@
-@SuppressWarnings("SuspiciousNameCombination")
 public class CompEngine extends VarFunc {
 
 
@@ -43,10 +42,10 @@ public class CompEngine extends VarFunc {
         String zz = "";
         String kk = "";
 
-        mathEngine(l, auth.get("car"), xx);
-        mathEngine(per100, auth.get("per100"), yy);
-        mathEngine(w, auth.get("words"), zz);
-        mathEngine(sper100, auth.get("sper100"), kk);
+        mathEngine(l, auth.get("car"));
+        mathEngine(per100, auth.get("per100"));
+        mathEngine(w, auth.get("words"));
+        mathEngine(sper100, auth.get("sper100"));
 
         String q = String.valueOf(auth.get("car"));
         String e = String.valueOf(auth.get("per100"));

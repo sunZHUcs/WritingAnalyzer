@@ -126,7 +126,7 @@ public class Messages extends Variables {
     public static void setComp() throws InterruptedException {
         System.out.println("What comparisons would you like to calculate?");
         System.out.println(compMethods);
-        System.out.println("[3] All of the above.");
+        System.out.println("[0] All of the above.");
 
         Scanner s4 = new Scanner(System.in);
         input = s4.nextLine();
@@ -139,15 +139,15 @@ public class Messages extends Variables {
                     input = s4.nextLine();
                 }
                 case "1" -> {
-                    comp = 1;
+                    comp = 0;
                     suc = true;
                 }
                 case "2" -> {
-                    comp = 2;
+                    comp = 1;
                     suc = true;
                 }
                 case "3" -> {
-                    comp = 3;
+                    comp = 2;
                     suc = true;
                 }
                 case "stop", "quit" -> {
@@ -174,7 +174,7 @@ public class Messages extends Variables {
         }
 
         System.out.println();
-        System.out.println("To confirm these settings type \"confirm\". To change the author type \"Author\". To change the comparison method(s) type \"Comparison\".");
+        System.out.println("To confirm these settings type \"Confirm\". To change the author type \"Author\". To change the comparison method(s) type \"Comparison\".");
 
         Scanner s5 = new Scanner(System.in);
         input = s5.nextLine();

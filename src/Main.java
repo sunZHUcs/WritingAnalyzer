@@ -1,5 +1,3 @@
-import org.w3c.dom.Text;
-
 import java.io.IOException;
 
 public class Main extends Variables {
@@ -19,20 +17,20 @@ public class Main extends Variables {
                     TextParser.removeEnter();
                     TextParser.parseAut();
                     switch (comp) {
-                        case 1:
+                        case 0:
                             TextReader.wfw(); //Word for Word Comparison
                             TextReader.conjWfw(); //Word for Word Comparison excluding Conjunctions and Common Words
-                            CompEngine.compOne(); //Compare vs Selected Author
-                        case 2:
+                            TextReader.sentcarLength(); //Calculate Sentence Stats w/Characters
+                            TextReader.sentwordLength(); //Calculate Sentence Stats w/Words
+                            CompEngine.compZero(); //Compare vs Selected Author
+                        case 1:
                             TextReader.sentcarLength(); //Calculate Sentence Stats w/Characters
                             TextReader.sentwordLength(); //Calculate Sentence Stats w/Words
                             CompEngine.compTwo(); //Compare vs Selected Author
-                        case 3:
+                        case 2:
                             TextReader.wfw(); //Word for Word Comparison
                             TextReader.conjWfw(); //Word for Word Comparison excluding Conjunctions and Common Words
-                            TextReader.sentcarLength(); //Calculate Sentence Stats w/Characters
-                            TextReader.sentwordLength(); //Calculate Sentence Stats w/Words
-                            CompEngine.compThree(); //Compare vs Selected Author
+                            CompEngine.compOne(); //Compare vs Selected Author
                     }
                     Messages.compAgain();
                 } else {
@@ -50,20 +48,20 @@ public class Main extends Variables {
             TextParser.removeEnter();
             TextParser.parseAut();
             switch (comp) {
-                case 1:
+                case 0:
                     TextReader.wfw(); //Word for Word Comparison
                     TextReader.conjWfw(); //Word for Word Comparison excluding Conjunctions and Common Words
-                    CompEngine.compOne(); //Compare vs Selected Author
-                case 2:
+                    TextReader.sentcarLength(); //Calculate Sentence Stats w/Characters
+                    TextReader.sentwordLength(); //Calculate Sentence Stats w/Words
+                    CompEngine.compZero(); //Compare vs Selected Author
+                case 1:
                     TextReader.sentcarLength(); //Calculate Sentence Stats w/Characters
                     TextReader.sentwordLength(); //Calculate Sentence Stats w/Words
                     CompEngine.compTwo(); //Compare vs Selected Author
-                case 3:
+                case 2:
                     TextReader.wfw(); //Word for Word Comparison
                     TextReader.conjWfw(); //Word for Word Comparison excluding Conjunctions and Common Words
-                    TextReader.sentcarLength(); //Calculate Sentence Stats w/Characters
-                    TextReader.sentwordLength(); //Calculate Sentence Stats w/Words
-                    CompEngine.compThree(); //Compare vs Selected Author
+                    CompEngine.compOne(); //Compare vs Selected Author
             }
             Messages.compAgain();
 

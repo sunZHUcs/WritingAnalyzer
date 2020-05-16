@@ -11,51 +11,43 @@ public class CompEngine extends VarFunc {
         System.out.println();
         System.out.println("Top 3 Most Used Words");
         System.out.println("====================================");
-        System.out.println("YOU:        ||  " + author.toUpperCase() + ":");
+        System.out.println("| YOU:        ||  " + author.toUpperCase() + ":");
+        System.out.println("------------------------------------");
         for (int i = 0; i < 3; i++) {
             String key = keys.get(i);
             Double value = values.get(i);
             String akey = awords.get(i);
             double avalue = Double.parseDouble(astats.get(i));
-            System.out.println(key + " (" + value + ")" + " || " + akey + " (" + avalue + ")");
+            System.out.println("| " + key + " (" + value + ")" + " || " + akey + " (" + avalue + ")" + "     |");
         }
         System.out.println("====================================");
         System.out.println();
-        System.out.println("Top 3 Most Used Words Excluding Conjunctions");
+        System.out.println("| Top 3 Most Used Words Excluding Conjunctions");
         System.out.println("====================================");
-        System.out.println("YOU:        ||  " + author.toUpperCase() + ":");
+        System.out.println("| YOU:        ||  " + author.toUpperCase() + ":");
+        System.out.println("------------------------------------");
         for (int i = 0; i < 3; i++) {
             String key = ckeys.get(i);
             Double value = cvalues.get(i);
             String akey = acwords.get(i);
             double avalue = Double.parseDouble(acstats.get(i));
-            System.out.println(key + " (" + value + ")" + " || " + akey + " (" + avalue + ")");
+            System.out.println("| " + key + " (" + value + ")" + " || " + akey + " (" + avalue + ")" + "      |");
         }
         System.out.println("====================================");
     }
 
 
     static void compTwo() {
-        double x = l / auth.get("car");
-        x = x * 100;
-        VarFunc.roundDouble(x);
-        String xx = String.valueOf(x);
-        xx = xx + "%";
-        double y = per100 / auth.get("per100");
-        y = y * 100;
-        VarFunc.roundDouble(y);
-        String yy = String.valueOf(y);
-        yy = yy + "%";
-        double z = w / auth.get("words");
-        z = z * 100;
-        VarFunc.roundDouble(z);
-        String zz = String.valueOf(z);
-        zz = zz + "%";
-        double k = sper100 / auth.get("sper100");
-        k = k * 100;
-        VarFunc.roundDouble(k);
-        String kk = String.valueOf(k);
-        kk = kk + "%";
+        String xx = "";
+        String yy = "";
+        String zz = "";
+        String kk = "";
+
+        mathEngine(l, auth.get("car"), xx);
+        mathEngine(per100, auth.get("per100"), yy);
+        mathEngine(w, auth.get("words"), zz);
+        mathEngine(sper100, auth.get("sper100"), kk);
+
         String q = String.valueOf(auth.get("car"));
         String e = String.valueOf(auth.get("per100"));
         String r = String.valueOf(auth.get("words"));

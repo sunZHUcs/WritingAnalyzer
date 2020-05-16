@@ -23,14 +23,17 @@ public class Main extends VarFunc {
                             TextReader.sentcarLength();
                             TextReader.sentwordLength();
                             CompEngine.compZero();
+                            break;
                         case 1:
                             TextReader.sentcarLength();
                             TextReader.sentwordLength();
                             CompEngine.compTwo();
+                            break;
                         case 2:
                             TextReader.wfw();
                             TextReader.conjWfw();
                             CompEngine.compOne();
+                            break;
                     }
                     Messages.compAgain();
                 } else {
@@ -54,14 +57,17 @@ public class Main extends VarFunc {
                     TextReader.sentcarLength();
                     TextReader.sentwordLength();
                     CompEngine.compZero();
+                    break;
                 case 1:
                     TextReader.sentcarLength();
                     TextReader.sentwordLength();
                     CompEngine.compTwo();
+                    break;
                 case 2:
                     TextReader.wfw();
                     TextReader.conjWfw();
                     CompEngine.compOne();
+                    break;
             }
             Messages.compAgain();
 

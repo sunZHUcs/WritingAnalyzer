@@ -52,9 +52,18 @@ public class VarFunc {
     public static final Map<String, Double> rick = new LinkedHashMap<>();
 
     @SuppressWarnings("UnusedAssignment")
-    static void roundDouble(Double x) {
+    public static void roundDouble(Double x) {
         BigDecimal b1 = new BigDecimal(Double.toString(x));
         b1 = b1.setScale(2, RoundingMode.HALF_UP);
         x = b1.doubleValue();
     }
+    public static void mathEngine(Double x, Double y, String k){
+        double z = 0.00;
+        z = x/y;
+        z = z * 100;
+        VarFunc.roundDouble(z);
+        k = String.valueOf(z);
+        k = k + "%";
+    }
+
 }

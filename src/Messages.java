@@ -4,7 +4,7 @@ import java.util.Scanner;
 @SuppressWarnings("BusyWait")
 public class Messages extends VarFunc {
 
-    private static final String compMethods = "[1] Word for word comparision against the selected Author\n[2] PRE-ALPHA: Sentence Structure.";
+    private static final String compMethods = "[1] Word for word comparision against the selected Author\n[2] BETA: Sentence Structure.";
     private static final String shutdown = "Program shutting down";
     private static final String ver = "0.01";
     private static Boolean suc = false;
@@ -126,8 +126,8 @@ public class Messages extends VarFunc {
     //Allow user to set Comparison Method(s)
     public static void setComp() throws InterruptedException {
         System.out.println("What comparisons would you like to calculate?");
-        System.out.println(compMethods);
         System.out.println("[0] All of the above.");
+        System.out.println(compMethods);
 
         Scanner s4 = new Scanner(System.in);
         input = s4.nextLine();
@@ -139,15 +139,15 @@ public class Messages extends VarFunc {
                     System.out.println("Invalid Input!");
                     input = s4.nextLine();
                 }
-                case "1" -> {
+                case "0" -> {
                     comp = 0;
                     suc = true;
                 }
-                case "2" -> {
+                case "1" -> {
                     comp = 1;
                     suc = true;
                 }
-                case "3" -> {
+                case "2" -> {
                     comp = 2;
                     suc = true;
                 }
@@ -169,9 +169,9 @@ public class Messages extends VarFunc {
         System.out.println("You have selected the Author " + author.toUpperCase() + " and the comparison(s): ");
 
         switch (comp) {
+            case 0 -> System.out.println("Word for Word Comparison, Sentence Structure Comparison, and Number of verbs, nouns, etc. Comparison");
             case 1 -> System.out.println("[1] Word for Word Comparision");
-            case 2 -> System.out.println("[2] PRE-ALPHA: Sentence Structure Comparison.");
-            case 3 -> System.out.println("Word for Word Comparison, Sentence Structure Comparison, and Number of verbs, nouns, etc. Comparison");
+            case 2 -> System.out.println("[2] BETA: Sentence Structure Comparison.");
         }
 
         System.out.println();

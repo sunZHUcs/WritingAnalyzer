@@ -82,8 +82,6 @@ public class CompEngine extends VarFunc {
         String akey = awords.get(3);
         String avalue = astats.get(3);
 
-        //TODO: FINISH OUTPUT BOX
-
         String per = mathEngine(uni, auth.get("uni"));
 
         String one = "| Least Used Word     |  " + key + " (" + value + ")";

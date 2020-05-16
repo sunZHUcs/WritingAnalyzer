@@ -83,7 +83,6 @@ public class Main extends VarFunc {
         }
 
         //TODO: MINIMIZE CODE
-        //TODO: IDEA - Number of unique words comparison
         //TODO: Fix invalid words
         //TODO: Code Cleanup (Always)
 

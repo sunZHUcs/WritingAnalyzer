@@ -60,7 +60,7 @@ public class CompEngine extends VarFunc {
         System.out.println(break1);
 
 
-        String header1 = "|                    | YOU:";
+        String header1 = "|                     | YOU:";
         String header2 = author.toUpperCase() + ":";
         String header3 = "% of Author";
         header1 = constAppend(header1, 45);
@@ -122,7 +122,7 @@ public class CompEngine extends VarFunc {
         String break2 = "------------------------------------------------------------------------------------";
 
         //TODO: DO HEADER PARTS & APPEND
-        String header1 = "|                                  | YOU:    ";
+        String header1 = "|                                   | YOU:    ";
         String header2 = author.toUpperCase() + ":";
         String header3 = "% of Author";
         String one = "| Avg. Characters Per Sentence      |  " + l;

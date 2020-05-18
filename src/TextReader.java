@@ -242,7 +242,7 @@ public class TextReader extends VarFunc {
                         jcstats.addAll(Arrays.asList(temp));
                     } else {
                         String[] temp = line.split("=");
-                        pat.put(temp[0], Double.parseDouble(temp[1]));
+                        jk.put(temp[0], Double.parseDouble(temp[1]));
                     }
                 }
             } else {
@@ -264,7 +264,7 @@ public class TextReader extends VarFunc {
                         rcstats.addAll(Arrays.asList(temp));
                     } else {
                         String[] temp = line.split("=");
-                        pat.put(temp[0], Double.parseDouble(temp[1]));
+                        rick.put(temp[0], Double.parseDouble(temp[1]));
                     }
                 }
             }

@@ -14,21 +14,7 @@ public class VarFunc {
     public static final Map<String, Double> auth = new LinkedHashMap<>(); //Selected Author's miscellaneous statistics
     //UNUSED VARIABLES
     public static final ArrayList<String> authors = new ArrayList<>();
-    public static final ArrayList<String> pwords = new ArrayList<>();
-    public static final ArrayList<String> jwords = new ArrayList<>();
-    public static final ArrayList<String> rwords = new ArrayList<>();
-    public static final ArrayList<String> pcwords = new ArrayList<>();
-    public static final ArrayList<String> jcwords = new ArrayList<>();
-    public static final ArrayList<String> rcwords = new ArrayList<>();
-    public static final ArrayList<String> pstats = new ArrayList<>();
-    public static final ArrayList<String> jstats = new ArrayList<>();
-    public static final ArrayList<String> rstats = new ArrayList<>();
-    public static final ArrayList<String> pcstats = new ArrayList<>();
-    public static final ArrayList<String> jcstats = new ArrayList<>();
-    public static final ArrayList<String> rcstats = new ArrayList<>();
-    public static final Map<String, Double> pat = new LinkedHashMap<>();
-    public static final Map<String, Double> jk = new LinkedHashMap<>();
-    public static final Map<String, Double> rick = new LinkedHashMap<>();
+   
     public static ArrayList<String> keys; //Top 3 most used words
     public static ArrayList<Double> values; //Numbers of uses for most used words
     public static ArrayList<String> ckeys; //Top 3 most used words excluding conjunctions and common words

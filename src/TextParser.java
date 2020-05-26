@@ -1,7 +1,7 @@
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class TextParser extends VarFunc {
@@ -39,29 +39,29 @@ public class TextParser extends VarFunc {
 
     }
 
-    public static void parseAut() {
+    public static void getStat() throws IOException {
 
-        switch (aut) {
-            case 1 -> {
-                awords.addAll(pwords);
-                astats.addAll(pstats);
-                acwords.addAll(pcwords);
-                acstats.addAll(pcstats);
-                auth.putAll(pat);
-            }
-            case 2 -> {
-                awords.addAll(jwords);
-                astats.addAll(jstats);
-                acwords.addAll(jcwords);
-                acstats.addAll(jcstats);
-                auth.putAll(jk);
-            }
-            case 3 -> {
-                awords.addAll(rwords);
-                astats.addAll(rstats);
-                acwords.addAll(rcwords);
-                acstats.addAll(rcstats);
-                auth.putAll(rick);
+        InputStream path = TextReader.class.getClassLoader().getResourceAsStream(tpath);
+
+        assert path != null;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(path));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            if (line.contains(":")) {
+                String[] temp = line.split(":");
+                awords.addAll(Arrays.asList(temp));
+            } else if (line.contains("-")) {
+                String[] temp = line.split("-");
+                acwords.addAll(Arrays.asList(temp));
+            } else if (line.contains("!")) {
+                String[] temp = line.split("!");
+                astats.addAll(Arrays.asList(temp));
+            } else if (line.contains("?")) {
+                String[] temp = line.split("[?]");
+                acstats.addAll(Arrays.asList(temp));
+            } else {
+                String[] temp = line.split("=");
+                auth.put(temp[0], Double.parseDouble(temp[1]));
             }
         }
     }

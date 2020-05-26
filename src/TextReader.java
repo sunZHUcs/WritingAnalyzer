@@ -12,6 +12,7 @@ public class TextReader extends VarFunc {
     private static final InputStream jkin = TextReader.class.getClassLoader().getResourceAsStream("resources/jk.txt");
     private static final InputStream rickin = TextReader.class.getClassLoader().getResourceAsStream("resources/rick.txt");
     private static List<String> sentences = new LinkedList<>(Arrays.asList(text.split("[!.?]")));
+    private static double x;
 
     public static void authorList() throws IOException {
 
@@ -198,77 +199,4 @@ public class TextReader extends VarFunc {
         }
     }
 
-    public static void getStat() throws IOException {
-
-        for (int i = 0; i < 3; i++) {
-            if (i == 0) {
-                assert patin != null;
-                BufferedReader reader = new BufferedReader(new InputStreamReader(patin));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    if (line.contains(":")) {
-                        String[] temp = line.split(":");
-                        pwords.addAll(Arrays.asList(temp));
-                    } else if (line.contains("-")) {
-                        String[] temp = line.split("-");
-                        pcwords.addAll(Arrays.asList(temp));
-                    } else if (line.contains("!")) {
-                        String[] temp = line.split("!");
-                        pstats.addAll(Arrays.asList(temp));
-                    } else if (line.contains("?")) {
-                        String[] temp = line.split("[?]");
-                        pcstats.addAll(Arrays.asList(temp));
-                    } else {
-                        String[] temp = line.split("=");
-                        pat.put(temp[0], Double.parseDouble(temp[1]));
-                    }
-                }
-            } else if (i == 1) {
-                assert jkin != null;
-                BufferedReader reader = new BufferedReader(new InputStreamReader(jkin));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    if (line.contains(":")) {
-                        String[] temp = line.split(":");
-                        jwords.addAll(Arrays.asList(temp));
-                    } else if (line.contains("-")) {
-                        String[] temp = line.split("-");
-                        jcwords.addAll(Arrays.asList(temp));
-                    } else if (line.contains("!")) {
-                        String[] temp = line.split("!");
-                        jstats.addAll(Arrays.asList(temp));
-                    } else if (line.contains("?")) {
-                        String[] temp = line.split("[?]");
-                        jcstats.addAll(Arrays.asList(temp));
-                    } else {
-                        String[] temp = line.split("=");
-                        jk.put(temp[0], Double.parseDouble(temp[1]));
-                    }
-                }
-            } else {
-                assert rickin != null;
-                BufferedReader reader = new BufferedReader(new InputStreamReader(rickin));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    if (line.contains(":")) {
-                        String[] temp = line.split(":");
-                        rwords.addAll(Arrays.asList(temp));
-                    } else if (line.contains("-")) {
-                        String[] temp = line.split("-");
-                        rcwords.addAll(Arrays.asList(temp));
-                    } else if (line.contains("!")) {
-                        String[] temp = line.split("!");
-                        rstats.addAll(Arrays.asList(temp));
-                    } else if (line.contains("?")) {
-                        String[] temp = line.split("[?]");
-                        rcstats.addAll(Arrays.asList(temp));
-                    } else {
-                        String[] temp = line.split("=");
-                        rick.put(temp[0], Double.parseDouble(temp[1]));
-                    }
-                }
-            }
-        }
-
-    }
 }

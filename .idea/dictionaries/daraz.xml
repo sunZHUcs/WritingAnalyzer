@@ -3,14 +3,17 @@
     <words>
       <w>acstats</w>
       <w>acwords</w>
+      <w>akey</w>
       <w>analyzation</w>
       <w>annabeth</w>
       <w>astats</w>
       <w>authorlist</w>
+      <w>avalue</w>
       <w>awords</w>
       <w>ckeys</w>
       <w>cvalues</w>
       <w>daraz</w>
+      <w>devmode</w>
       <w>excount</w>
       <w>getval</w>
       <w>ihinsatva</w>
@@ -44,6 +47,7 @@
       <w>sentword</w>
       <w>sper</w>
       <w>sunboyz</w>
+      <w>tpath</w>
       <w>washedinput</w>
     </words>
   </dictionary>

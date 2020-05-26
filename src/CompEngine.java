@@ -121,7 +121,6 @@ public class CompEngine extends VarFunc {
         String separator = " || ";
         String break2 = "------------------------------------------------------------------------------------";
 
-        //TODO: DO HEADER PARTS & APPEND
         String header1 = "|                                   | YOU:    ";
         String header2 = author.toUpperCase() + ":";
         String header3 = "% of Author";
@@ -139,7 +138,7 @@ public class CompEngine extends VarFunc {
         String twelve = k;
 
         header2 = constAppend(header2, 19);
-        header3 = constAppend(header3, 11);
+        header3 = constAppend(header3, 10);
         one = constAppend(one, 45);
         two = constAppend(two, 19);
         three = constAppend(three, 11);

@@ -198,6 +198,7 @@ public class TextReader extends VarFunc {
         }
     }
 
+    
     public static void getStat() throws IOException {        
             int i=aut-1;
             BufferedReader reader;

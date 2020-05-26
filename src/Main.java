@@ -14,8 +14,9 @@ public class Main extends VarFunc {
                     Messages.setAut();
                     Messages.setComp();
                     Messages.fixSet();
+                    TextReader.getStat();
                     TextParser.removeEnter();
-                    TextParser.parseAut();
+                    //TextParser.parseAut();
                     switch (comp) {
                         case 0 -> {
                             TextReader.wfw();
@@ -41,15 +42,16 @@ public class Main extends VarFunc {
                 }
             }
 
-            TextReader.getStat();
+            //TextReader.getStat();
             TextReader.authorList();
             Messages.beginPrompt();
             Messages.infoSpout();
             Messages.setAut();
             Messages.setComp();
             Messages.fixSet();
+            TextReader.getStat();
             TextParser.removeEnter();
-            TextParser.parseAut();
+            //TextParser.parseAut();
             switch (comp) {
                 case 0 -> {
                     TextReader.wfw();
@@ -75,17 +77,14 @@ public class Main extends VarFunc {
             TextReader.authorList();
             TextReader.getStat();
             Messages.setAut();
-            TextParser.parseAut();
+            //TextParser.parseAut();
             TextParser.removeEnter();
             TextReader.wfw();
             TextReader.conjWfw();
             CompEngine.compOne();
         }
-
         //TODO: MINIMIZE CODE
         //TODO: Fix invalid words
         //TODO: Code Cleanup (Always)
-
     }
-
 }

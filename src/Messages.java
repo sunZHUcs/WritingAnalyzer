@@ -99,17 +99,14 @@ public class Messages extends VarFunc {
                     input = s3.nextLine();
                 }
                 case "patrick rothfuss" -> {
-                    aut = 1;
                     tpath = "resources/pat.txt";
                     suc = true;
                 }
                 case "jk rowling" -> {
-                    aut = 2;
                     tpath = "resources/jk.txt";
                     suc = true;
                 }
                 case "rick riordan" -> {
-                    aut = 3;
                     tpath = "resources/rick.txt";
                     suc = true;
                 }

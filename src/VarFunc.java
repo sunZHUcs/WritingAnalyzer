@@ -1,4 +1,3 @@
-import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -11,7 +10,6 @@ public class VarFunc {
 
     //Utility
     public static int comp = 0; //Selected Comparison Method(s)
-    public static int aut = 0; //Selected Author
     public static Double uni = 0.0; //Number of unique words
     public static String input = ""; //Universal input variable
     public static String washedinput = ""; //Input with no .?!

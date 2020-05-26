@@ -8,9 +8,6 @@ import java.util.stream.Collectors;
 public class TextReader extends VarFunc {
 
     private static final InputStream list = TextReader.class.getClassLoader().getResourceAsStream("resources/authors.txt");
-    private static final InputStream patin = TextReader.class.getClassLoader().getResourceAsStream("resources/pat.txt");
-    private static final InputStream jkin = TextReader.class.getClassLoader().getResourceAsStream("resources/jk.txt");
-    private static final InputStream rickin = TextReader.class.getClassLoader().getResourceAsStream("resources/rick.txt");
     private static List<String> sentences = new LinkedList<>(Arrays.asList(text.split("[!.?]")));
     private static double x;
 

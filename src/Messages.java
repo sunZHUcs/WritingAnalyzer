@@ -166,21 +166,10 @@ public class Messages extends VarFunc {
 
     //Allow user to change final settings
     public static void fixSet() throws InterruptedException {
-        System.out.println();
-        System.out.println("You have selected the Author " + author.toUpperCase() + " and the comparison(s): ");
-
-        switch (comp) {
-            case 0 -> System.out.println("Word for Word Comparison and Sentence Structure Comparison");
-            case 1 -> System.out.println("[1] Word for Word Comparision");
-            case 2 -> System.out.println("[2] BETA: Sentence Structure Comparison");
-        }
-
-        System.out.println();
-        System.out.println("To confirm these settings type \"Confirm\". To change the author type \"Author\". To change the comparison method(s) type \"Comparison\".");
+        fixSetInfo();
 
         Scanner s5 = new Scanner(System.in);
         input = s5.nextLine();
-
         while (!suc) {
 
             switch (input.toLowerCase()) {
@@ -192,11 +181,15 @@ public class Messages extends VarFunc {
                 case "author" -> {
                     setAut();
                     fixSet();
+                    fixSetInfo();
+                    input = s5.nextLine();
                 }
                 case "comparison" -> {
                     System.out.println();
                     setComp();
                     fixSet();
+                    fixSetInfo();
+                    input = s5.nextLine();
                 }
                 case "stop", "quit" -> {
                     System.out.println();
@@ -209,6 +202,20 @@ public class Messages extends VarFunc {
 
         System.out.println();
         System.out.println("Settings confirmed. Enter the file path of your text file: ");
+    }
+
+    public static void fixSetInfo(){
+        System.out.println();
+        System.out.println("You have selected the Author " + author.toUpperCase() + " and the comparison(s): ");
+
+        switch (comp) {
+            case 0 -> System.out.println("Word for Word Comparison and Sentence Structure Comparison");
+            case 1 -> System.out.println("[1] Word for Word Comparision");
+            case 2 -> System.out.println("[2] BETA: Sentence Structure Comparison");
+        }
+
+        System.out.println();
+        System.out.println("To confirm these settings type \"Confirm\". To change the author type \"Author\". To change the comparison method(s) type \"Comparison\".");
     }
 
     public static void compAgain() throws IOException, InterruptedException {

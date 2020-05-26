@@ -39,7 +39,7 @@ public class TextParser extends VarFunc {
 
     }
 
-    public static void parseAut() {
+    /*public static void parseAut() {
 
         switch (aut) {
             case 1 -> {
@@ -64,5 +64,5 @@ public class TextParser extends VarFunc {
                 auth.putAll(rick);
             }
         }
-    }
+    }*/
 }

@@ -1,13 +1,36 @@
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 @SuppressWarnings("BusyWait")
-public class Messages extends VarFunc {
+public class Messages extends Main {
 
     private static final String compMethods = "[0] All Methods\n[1] Word for Word comparision\n[2] BETA: Sentence Structure\n------------------------------";
     private static final String shutdown = "Program shutting down";
     private static final String ver = "0.01";
+    private static final ArrayList<String> authors = new ArrayList<>();
+    private static final InputStream list = CompEngine.class.getClassLoader().getResourceAsStream("resources/authors.txt");
     private static Boolean suc = false;
+    private static String input = "";
+
+    public static void authorList() throws IOException {
+
+        if (!(list == null)) {
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(list));
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                authors.add(line);
+            }
+        } else {
+            System.exit(2);
+        }
+    }
+
 
     //Introduce User and make sure they want to continue
     public static void beginPrompt() throws InterruptedException {
@@ -164,8 +187,7 @@ public class Messages extends VarFunc {
         suc = false;
     }
 
-    //Allow user to change final settings
-    public static void fixSet() throws InterruptedException {
+    public static void setInfo() {
         System.out.println();
         System.out.println("You have selected the Author " + author.toUpperCase() + " and the comparison(s): ");
 
@@ -177,10 +199,14 @@ public class Messages extends VarFunc {
 
         System.out.println();
         System.out.println("To confirm these settings type \"Confirm\". To change the author type \"Author\". To change the comparison method(s) type \"Comparison\".");
+    }
+
+
+    public static void fixSet() throws InterruptedException {
+        setInfo();
 
         Scanner s5 = new Scanner(System.in);
         input = s5.nextLine();
-
         while (!suc) {
 
             switch (input.toLowerCase()) {
@@ -192,11 +218,15 @@ public class Messages extends VarFunc {
                 case "author" -> {
                     setAut();
                     fixSet();
+                    setInfo();
+                    input = s5.nextLine();
                 }
                 case "comparison" -> {
                     System.out.println();
                     setComp();
                     fixSet();
+                    setInfo();
+                    input = s5.nextLine();
                 }
                 case "stop", "quit" -> {
                     System.out.println();
@@ -210,6 +240,7 @@ public class Messages extends VarFunc {
         System.out.println();
         System.out.println("Settings confirmed. Enter the file path of your text file: ");
     }
+
 
     public static void compAgain() throws IOException, InterruptedException {
         boolean x = false;

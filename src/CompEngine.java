@@ -1,76 +1,282 @@
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
+import java.util.stream.Collectors;
+
 public class CompEngine extends VarFunc {
 
-    static void compZero() {
-        compOne();
-        compTwo();
+    private static final ArrayList<String> akeys = new ArrayList<>(); //Selected Author's top 3 words
+    private static final ArrayList<String> avalues = new ArrayList<>(); //Selected Author's num of uses for "awords"
+    private static final ArrayList<String> ackeys = new ArrayList<>(); //Selected Author's top 3 words excluding conjunctions
+    private static final ArrayList<String> acvalues = new ArrayList<>(); //Selected Author's num of uses for "acwords"
+    private static final Map<String, Double> auth = new LinkedHashMap<>(); //Selected Author's miscellaneous statistics\    public static ArrayList<String> keys; //Top 3 most used words
+    public static String washedinput = ""; //Input with no .?!
+    public static String text = ""; //Input with no whitespace
+    public static ArrayList<String> keys; //Top 3 most used words
+    public static ArrayList<Double> values; //Numbers of uses for most used words
+    public static ArrayList<String> ckeys; //Top 3 most used words excluding conjunctions and common words
+    public static ArrayList<Double> cvalues; //Numbers of uses for most used words excluding conjunctions and common words
+    public static ArrayList<Integer> prevalues; //Raw numbers of uses for most used words
+    public static ArrayList<Integer> precvalues; //Raw numbers of uses for most used words excluding conjunctions and common words
+    public static double l; //Characters per sentence
+    public static double per100; //sentences per 100 characters
+    public static double w; //words per sentence
+    public static double sper100; //sentences per 100 words
+    private static Double uni = 0.0; //Number of unique words
+    private static double x;
+    private static List<String> sentences = new LinkedList<>(Arrays.asList(text.split("[!.?]")));
+
+    public static void sentcarLength() {
+        int i = 0;
+        double car = 0;
+
+        sentences = Arrays.asList(text.split("[!.?]"));
+        for (String sentence : sentences) {
+
+            if (sentence.length() == 0) {
+                i++;
+            } else {
+                char x = sentence.charAt(0);
+                String y = String.valueOf(x);
+
+                if (y.equalsIgnoreCase(" ")) {
+                    car = car + sentence.substring(1).length();
+                } else {
+                    car = car + sentence.length();
+                }
+            }
+        }
+
+        l = car / (sentences.size() - i);
+        l = VarFunc.roundDouble(l);
+
+        per100 = 100 / l;
+        per100 = VarFunc.roundDouble(per100);
+
     }
 
-    static void compOne() {
-        String break1 = "============================================";
-        String break2 = "--------------------------------------------";
-        String separator = " || ";
-        StringBuilder header = new StringBuilder("| YOU:            ||  " + author.toUpperCase() + ":");
-        while (header.length() < 43) {
-            header.append(" ");
+    public static void sentwordLength() {
+        int i = 0;
+        double words = 0;
+
+        sentences = Arrays.asList(text.split("[!.?]"));
+
+        for (String sentence : sentences) {
+
+            if (sentence.length() == 0) {
+                i++;
+            } else {
+                char x = sentence.charAt(0);
+                String y = String.valueOf(x);
+
+                if (y.equalsIgnoreCase(" ")) {
+                    long spaces = sentence.chars().filter(c -> c == (int) ' ').count();
+                    words = words + spaces;
+                } else {
+                    long spaces = sentence.chars().filter(c -> c == (int) ' ').count();
+                    words = words + spaces + 1;
+                }
+            }
         }
-        header.append("|");
 
-        System.out.println();
-        System.out.println("Top 3 Most Used Words. [Word (Num of Uses/1000 Words)]");
-        System.out.println(break1);
-        System.out.println(header);
-        System.out.println(break2);
+        w = words / (sentences.size() - i);
+        w = VarFunc.roundDouble(w);
 
-        for (int i = 0; i < 3; i++) {
-            String key = keys.get(i);
-            Double value = values.get(i);
-            String akey = awords.get(i);
-            double avalue = Double.parseDouble(astats.get(i));
+        sper100 = 100 / w;
+        sper100 = VarFunc.roundDouble(sper100);
 
-            String part1 = key + " (" + value + ")";
-            String part2 = akey + " (" + avalue + ")";
+    }
 
-            part1 = constAppend(part1, 15);
-            part2 = constAppend(part2, 22);
+    public static void wfw() {
 
-            System.out.println("| " + part1 + separator + part2 + "|");
+        washedinput = text.replaceAll("[!.?]", "");
+        String[] words = washedinput.split("\\s+");
+
+        for (int i = 0; i < words.length; i++) {
+            words[i] = words[i].toLowerCase();
         }
-        System.out.println(break1);
 
-        System.out.println();
-        System.out.println("Top 3 Most Used Words Excluding Conjunctions \nand Common Words. [Word (Num of Uses/1000 Words)]");
-        System.out.println(break1);
-        System.out.println(header);
-        System.out.println(break2);
+        HashMap<String, Integer> repetitions = new HashMap<>();
 
-        for (int i = 0; i < 3; i++) {
-            String key = ckeys.get(i);
-            Double value = cvalues.get(i);
-            String akey = acwords.get(i);
-            double avalue = Double.parseDouble(acstats.get(i));
-
-            String part1 = key + " (" + value + ")";
-            String part2 = akey + " (" + avalue + ")";
-
-            part1 = constAppend(part1, 15);
-            part2 = constAppend(part2, 22);
-
-            System.out.println("| " + part1 + separator + part2 + "|");
+        for (String word : words) {
+            if (repetitions.containsKey(word))
+                repetitions.put(word, repetitions.get(word) + 1);
+            else
+                repetitions.put(word, 1);
         }
-        System.out.println(break1);
+
+        uni = Double.parseDouble(String.valueOf(repetitions.size()));
+
+        Map<String, Integer> topThree =
+                repetitions.entrySet().stream()
+                        .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                        .limit(3)
+                        .collect(Collectors.toMap(
+                                Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+
+        String minKey = null;
+        int minValue = Integer.MAX_VALUE;
+        for (String key : repetitions.keySet()) {
+            int value = repetitions.get(key);
+            if (value < minValue) {
+                minValue = value;
+                minKey = key;
+            }
+
+        }
+
+        keys = new ArrayList<>(topThree.keySet());
+        prevalues = new ArrayList<>(topThree.values());
+        values = new ArrayList<>(prevalues.size());
+
+        for (Integer prevalue : prevalues) {
+
+            x = prevalue;
+            x = x / words.length;
+            x = x * 1000;
+            x = VarFunc.roundDouble(x);
+            values.add(x);
+
+        }
+        keys.add(minKey);
+        values.add((double) minValue);
+    }
+
+    public static void conjWfw() throws IOException {
+
+        washedinput = text.replaceAll("[!.?]", "");
+        String[] words = washedinput.split("\\s+");
+
+        for (int i = 0; i < words.length; i++) {
+            words[i] = words[i].toLowerCase();
+        }
+
+        ArrayList<String> conj = new ArrayList<>();
+        InputStream one = CompEngine.class.getClassLoader().getResourceAsStream("resources/conjunctions.txt");
+
+        if (!(one == null)) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(one));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                line = line.toLowerCase();
+                conj.add(line);
+            }
+        } else {
+            System.exit(2);
+        }
+
+        HashMap<String, Integer> repetitions = new HashMap<>();
+
+        for (String word : words) {
+            if (repetitions.containsKey(word) && !conj.contains(word))
+                repetitions.put(word, repetitions.get(word) + 1);
+            else
+                repetitions.put(word, 1);
+        }
+
+        Map<String, Integer> topThree =
+                repetitions.entrySet().stream()
+                        .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                        .limit(3)
+                        .collect(Collectors.toMap(
+                                Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+
+        ckeys = new ArrayList<>(topThree.keySet());
+        precvalues = new ArrayList<>(topThree.values());
+        cvalues = new ArrayList<>(prevalues.size());
+
+        for (Integer precvalue : precvalues) {
+
+            x = precvalue;
+            x = x / words.length;
+            x = x * 1000;
+            x = VarFunc.roundDouble(x);
+            cvalues.add(x);
+
+        }
+    }
+
+    public static void removeEnter() throws IOException, InterruptedException {
+        Scanner s1 = new Scanner(System.in);
+        String input = s1.nextLine();
+        input = input.replaceAll("\"", "");
+
+        File in = new File(input);
+        boolean t = false;
+
+        while (!t) {
+            if (in.exists()) {
+                t = true;
+            } else if (input.equalsIgnoreCase("stop") && input.equalsIgnoreCase("quit")) {
+                System.out.println();
+                System.out.println("Program shutting down");
+                Thread.sleep(1500);
+                System.exit(0);
+            } else {
+                System.out.println("Invalid File Path!");
+                input = s1.nextLine();
+                input = input.replaceAll("\"", "");
+                in = new File(input);
+            }
+        }
+
+        text = Files.readString(Paths.get(String.valueOf(in)));
+        text = text.replace("\n", "").replace("\r", "");
+
+    }
+
+    public static void getStat() throws IOException {
+
+        InputStream path = CompEngine.class.getClassLoader().getResourceAsStream(Main.tpath);
+
+        assert path != null;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(path));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            if (line.contains(":")) {
+                String[] temp = line.split(":");
+                akeys.addAll(Arrays.asList(temp));
+            } else if (line.contains("-")) {
+                String[] temp = line.split("-");
+                ackeys.addAll(Arrays.asList(temp));
+            } else if (line.contains("!")) {
+                String[] temp = line.split("!");
+                avalues.addAll(Arrays.asList(temp));
+            } else if (line.contains("?")) {
+                String[] temp = line.split("[?]");
+                acvalues.addAll(Arrays.asList(temp));
+            } else {
+                String[] temp = line.split("=");
+                auth.put(temp[0], Double.parseDouble(temp[1]));
+            }
+        }
+    }
+
+    public static void outZero() {
+        outOne();
+        outTwo();
+    }
+
+    public static void outOne() {
+        String m = "Top 3 Most Used Words. [Word (Num of Uses/1000 Words)]";
+        VarFunc.smallComp(keys, akeys, values, avalues, Main.author, m);
+        m = "Top 3 Most Used Words Excluding Conjunctions \nand Common Words. [Word (Num of Uses/1000 Words)]";
+        VarFunc.smallComp(ckeys, ackeys, cvalues, acvalues, Main.author, m);
 
 
         String header1 = "|                     | YOU:";
-        String header2 = author.toUpperCase() + ":";
+        String header2 = Main.author.toUpperCase() + ":";
         String header3 = "% of Author";
+        String separator = " || ";
         header1 = constAppend(header1, 45);
         header2 = constAppend(header2, 19);
         header3 = constAppend(header3, 11);
         String header4 = appendMachine(header1, header2, header3, separator, " |");
 
 
-        break1 = "=====================================================================================";
-        break2 = "-------------------------------------------------------------------------------------";
+        String break1 = "=====================================================================================";
+        String break2 = "-------------------------------------------------------------------------------------";
         System.out.println();
         System.out.println("Other Statistics. [Word (Num of Uses)]");
         System.out.println(break1);
@@ -79,8 +285,8 @@ public class CompEngine extends VarFunc {
 
         String key = keys.get(3);
         Double value = values.get(3);
-        String akey = awords.get(3);
-        String avalue = astats.get(3);
+        String akey = akeys.get(3);
+        String avalue = avalues.get(3);
 
         String per = mathEngine(uni, auth.get("uni"));
 
@@ -105,8 +311,7 @@ public class CompEngine extends VarFunc {
         System.out.println(break1);
     }
 
-
-    static void compTwo() {
+    public static void outTwo() {
         String q = String.valueOf(auth.get("car"));
         String e = String.valueOf(auth.get("per100"));
         String r = String.valueOf(auth.get("words"));
@@ -121,8 +326,8 @@ public class CompEngine extends VarFunc {
         String separator = " || ";
         String break2 = "------------------------------------------------------------------------------------";
 
-        String header1 = "|                                   | YOU:    ";
-        String header2 = author.toUpperCase() + ":";
+        String header1 = "|                                   | YOU:   ";
+        String header2 = Main.author.toUpperCase() + ":";
         String header3 = "% of Author";
         String one = "| Avg. Characters Per Sentence      |  " + l;
         String two = q;
@@ -171,5 +376,5 @@ public class CompEngine extends VarFunc {
         System.out.println(wps100);
         System.out.println(break1);
     }
-}
 
+}

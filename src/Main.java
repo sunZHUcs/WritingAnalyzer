@@ -1,6 +1,12 @@
 import java.io.IOException;
 
-public class Main extends VarFunc {
+public class Main {
+
+    public static int comp = 0; //Selected Comparison Method(s)
+    public static String author = ""; //Selected Author
+    public static String tpath = ""; //Path for selected Author
+    public static boolean restart = false; //Condition to restart program
+    public static boolean finished = false; //Has the program finished at least once
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
@@ -14,25 +20,25 @@ public class Main extends VarFunc {
                     Messages.setAut();
                     Messages.setComp();
                     Messages.fixSet();
-                    TextParser.removeEnter();
-                    TextParser.getStat();
+                    CompEngine.removeEnter();
+                    CompEngine.getStat();
                     switch (comp) {
                         case 0 -> {
-                            TextReader.wfw();
-                            TextReader.conjWfw();
-                            TextReader.sentcarLength();
-                            TextReader.sentwordLength();
-                            CompEngine.compZero();
+                            CompEngine.wfw();
+                            CompEngine.conjWfw();
+                            CompEngine.sentcarLength();
+                            CompEngine.sentwordLength();
+                            CompEngine.outZero();
                         }
                         case 1 -> {
-                            TextReader.wfw();
-                            TextReader.conjWfw();
-                            CompEngine.compOne();
+                            CompEngine.wfw();
+                            CompEngine.conjWfw();
+                            CompEngine.outOne();
                         }
                         case 2 -> {
-                            TextReader.sentcarLength();
-                            TextReader.sentwordLength();
-                            CompEngine.compTwo();
+                            CompEngine.sentcarLength();
+                            CompEngine.sentwordLength();
+                            CompEngine.outTwo();
                         }
                     }
                     Messages.compAgain();
@@ -41,43 +47,43 @@ public class Main extends VarFunc {
                 }
             }
 
-            TextReader.authorList();
+            Messages.authorList();
             Messages.beginPrompt();
             Messages.infoSpout();
             Messages.setAut();
             Messages.setComp();
             Messages.fixSet();
-            TextParser.removeEnter();
-            TextParser.getStat();
+            CompEngine.removeEnter();
+            CompEngine.getStat();
             switch (comp) {
                 case 0 -> {
-                    TextReader.wfw();
-                    TextReader.conjWfw();
-                    TextReader.sentcarLength();
-                    TextReader.sentwordLength();
-                    CompEngine.compZero();
+                    CompEngine.wfw();
+                    CompEngine.conjWfw();
+                    CompEngine.sentcarLength();
+                    CompEngine.sentwordLength();
+                    CompEngine.outZero();
                 }
                 case 1 -> {
-                    TextReader.wfw();
-                    TextReader.conjWfw();
-                    CompEngine.compOne();
+                    CompEngine.wfw();
+                    CompEngine.conjWfw();
+                    CompEngine.outOne();
                 }
                 case 2 -> {
-                    TextReader.sentcarLength();
-                    TextReader.sentwordLength();
-                    CompEngine.compTwo();
+                    CompEngine.sentcarLength();
+                    CompEngine.sentwordLength();
+                    CompEngine.outTwo();
                 }
             }
             Messages.compAgain();
 
         } else {
-            TextReader.authorList();
+            Messages.authorList();
             Messages.setAut();
-            TextParser.getStat();
-            TextParser.removeEnter();
-            TextReader.wfw();
-            TextReader.conjWfw();
-            CompEngine.compOne();
+            CompEngine.getStat();
+            CompEngine.removeEnter();
+            CompEngine.wfw();
+            CompEngine.conjWfw();
+            CompEngine.outOne();
         }
 
         //TODO: MINIMIZE CODE

@@ -1,44 +1,8 @@
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class VarFunc {
-
-    //USED VARIABLES:
-
-    //Utility
-    public static int comp = 0; //Selected Comparison Method(s)
-    public static Double uni = 0.0; //Number of unique words
-    public static String input = ""; //Universal input variable
-    public static String washedinput = ""; //Input with no .?!
-    public static String text = ""; //Input with no whitespace
-    public static String author = ""; //Selected Author
-    public static String tpath = ""; //Path for selected Author
-    public static boolean restart = false; //Condition to restart program
-    public static boolean finished = false; //Has the program finished at least once
-    public static final ArrayList<String> authors = new ArrayList<>();
-
-    //User Statistics
-    public static ArrayList<String> keys; //Top 3 most used words
-    public static ArrayList<Double> values; //Numbers of uses for most used words
-    public static ArrayList<String> ckeys; //Top 3 most used words excluding conjunctions and common words
-    public static ArrayList<Double> cvalues; //Numbers of uses for most used words excluding conjunctions and common words
-    public static ArrayList<Integer> prevalues; //Raw numbers of uses for most used words
-    public static ArrayList<Integer> precvalues; //Raw numbers of uses for most used words excluding conjunctions and common words
-    public static double l; //Characters per sentence
-    public static double per100; //sentences per 100 characters
-    public static double w; //words per sentence
-    public static double sper100; //sentences per 100 words
-
-    //Author Statistics
-    public static final ArrayList<String> awords = new ArrayList<>(); //Selected Author's top 3 words
-    public static final ArrayList<String> astats = new ArrayList<>(); //Selected Author's num of uses for "awords"
-    public static final ArrayList<String> acwords = new ArrayList<>(); //Selected Author's top 3 words excluding conjunctions
-    public static final ArrayList<String> acstats = new ArrayList<>(); //Selected Author's num of uses for "acwords"
-    public static final Map<String, Double> auth = new LinkedHashMap<>(); //Selected Author's miscellaneous statistics
-
 
     public static Double roundDouble(Double x) {
         BigDecimal b1 = new BigDecimal(Double.toString(x));
@@ -70,6 +34,40 @@ public class VarFunc {
         String k = String.valueOf(z);
         k = k + "%";
         return k;
+    }
+
+    public static void smallComp(ArrayList<String> k, ArrayList<String> aw, ArrayList<Double> v, ArrayList<String> av, String aut, String method) {
+        String break1 = "============================================";
+        String break2 = "--------------------------------------------";
+        String separator = " || ";
+        StringBuilder header = new StringBuilder("| YOU:            ||  " + aut.toUpperCase() + ":");
+        while (header.length() < 43) {
+            header.append(" ");
+        }
+
+        header.append("|");
+
+        System.out.println();
+        System.out.println(method);
+        System.out.println(break1);
+        System.out.println(header);
+        System.out.println(break2);
+
+        for (int i = 0; i < 3; i++) {
+            String key = k.get(i);
+            Double value = v.get(i);
+            String akey = aw.get(i);
+            double avalue = Double.parseDouble(av.get(i));
+
+            String part1 = key + " (" + value + ")";
+            String part2 = akey + " (" + avalue + ")";
+
+            part1 = constAppend(part1, 15);
+            part2 = constAppend(part2, 22);
+
+            System.out.println("| " + part1 + separator + part2 + "|");
+        }
+        System.out.println(break1);
     }
 
 }

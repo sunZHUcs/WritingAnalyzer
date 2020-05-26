@@ -38,5 +38,31 @@ public class TextParser extends VarFunc {
         text = text.replace("\n", "").replace("\r", "");
 
     }
-    
+
+    public static void parseAut() {
+
+        switch (aut) {
+            case 1 -> {
+                awords.addAll(pwords);
+                astats.addAll(pstats);
+                acwords.addAll(pcwords);
+                acstats.addAll(pcstats);
+                auth.putAll(pat);
+            }
+            case 2 -> {
+                awords.addAll(jwords);
+                astats.addAll(jstats);
+                acwords.addAll(jcwords);
+                acstats.addAll(jcstats);
+                auth.putAll(jk);
+            }
+            case 3 -> {
+                awords.addAll(rwords);
+                astats.addAll(rstats);
+                acwords.addAll(rcwords);
+                acstats.addAll(rcstats);
+                auth.putAll(rick);
+            }
+        }
+    }
 }

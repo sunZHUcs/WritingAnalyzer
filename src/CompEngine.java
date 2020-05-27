@@ -11,192 +11,21 @@ public class CompEngine extends VarFunc {
     private static final ArrayList<String> ackeys = new ArrayList<>(); //Selected Author's top 3 words excluding conjunctions
     private static final ArrayList<String> acvalues = new ArrayList<>(); //Selected Author's num of uses for "acwords"
     private static final Map<String, Double> auth = new LinkedHashMap<>(); //Selected Author's miscellaneous statistics\    public static ArrayList<String> keys; //Top 3 most used words
-    public static String washedinput = ""; //Input with no .?!
-    public static String text = ""; //Input with no whitespace
-    public static ArrayList<String> keys; //Top 3 most used words
-    public static ArrayList<Double> values; //Numbers of uses for most used words
-    public static ArrayList<String> ckeys; //Top 3 most used words excluding conjunctions and common words
-    public static ArrayList<Double> cvalues; //Numbers of uses for most used words excluding conjunctions and common words
-    public static ArrayList<Integer> prevalues; //Raw numbers of uses for most used words
-    public static ArrayList<Integer> precvalues; //Raw numbers of uses for most used words excluding conjunctions and common words
-    public static double l; //Characters per sentence
-    public static double per100; //sentences per 100 characters
-    public static double w; //words per sentence
-    public static double sper100; //sentences per 100 words
+    private static String text = ""; //Input with no whitespace
+    private static ArrayList<String> keys; //Top 3 most used words
+    private static ArrayList<Double> values; //Numbers of uses for most used words
+    private static ArrayList<String> ckeys; //Top 3 most used words excluding conjunctions and common words
+    private static ArrayList<Double> cvalues; //Numbers of uses for most used words excluding conjunctions and common words
+    private static double l; //Characters per sentence
+    private static double per100; //sentences per 100 characters
+    private static double w; //words per sentence
+    private static double sper100; //sentences per 100 words
     private static Double uni = 0.0; //Number of unique words
-    private static double x;
     private static List<String> sentences = new LinkedList<>(Arrays.asList(text.split("[!.?]")));
 
-    public static void sentcarLength() {
-        int i = 0;
-        double car = 0;
-
-        sentences = Arrays.asList(text.split("[!.?]"));
-        for (String sentence : sentences) {
-
-            if (sentence.length() == 0) {
-                i++;
-            } else {
-                char x = sentence.charAt(0);
-                String y = String.valueOf(x);
-
-                if (y.equalsIgnoreCase(" ")) {
-                    car = car + sentence.substring(1).length();
-                } else {
-                    car = car + sentence.length();
-                }
-            }
-        }
-
-        l = car / (sentences.size() - i);
-        l = VarFunc.roundDouble(l);
-
-        per100 = 100 / l;
-        per100 = VarFunc.roundDouble(per100);
-
-    }
-
-    public static void sentwordLength() {
-        int i = 0;
-        double words = 0;
-
-        sentences = Arrays.asList(text.split("[!.?]"));
-
-        for (String sentence : sentences) {
-
-            if (sentence.length() == 0) {
-                i++;
-            } else {
-                char x = sentence.charAt(0);
-                String y = String.valueOf(x);
-
-                if (y.equalsIgnoreCase(" ")) {
-                    long spaces = sentence.chars().filter(c -> c == (int) ' ').count();
-                    words = words + spaces;
-                } else {
-                    long spaces = sentence.chars().filter(c -> c == (int) ' ').count();
-                    words = words + spaces + 1;
-                }
-            }
-        }
-
-        w = words / (sentences.size() - i);
-        w = VarFunc.roundDouble(w);
-
-        sper100 = 100 / w;
-        sper100 = VarFunc.roundDouble(sper100);
-
-    }
-
-    public static void wfw() {
-
-        washedinput = text.replaceAll("[!.?]", "");
-        String[] words = washedinput.split("\\s+");
-
-        for (int i = 0; i < words.length; i++) {
-            words[i] = words[i].toLowerCase();
-        }
-
-        HashMap<String, Integer> repetitions = new HashMap<>();
-
-        for (String word : words) {
-            if (repetitions.containsKey(word))
-                repetitions.put(word, repetitions.get(word) + 1);
-            else
-                repetitions.put(word, 1);
-        }
-
-        uni = Double.parseDouble(String.valueOf(repetitions.size()));
-
-        Map<String, Integer> topThree =
-                repetitions.entrySet().stream()
-                        .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-                        .limit(3)
-                        .collect(Collectors.toMap(
-                                Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-
-        String minKey = null;
-        int minValue = Integer.MAX_VALUE;
-        for (String key : repetitions.keySet()) {
-            int value = repetitions.get(key);
-            if (value < minValue) {
-                minValue = value;
-                minKey = key;
-            }
-
-        }
-
-        keys = new ArrayList<>(topThree.keySet());
-        prevalues = new ArrayList<>(topThree.values());
-        values = new ArrayList<>(prevalues.size());
-
-        for (Integer prevalue : prevalues) {
-
-            x = prevalue;
-            x = x / words.length;
-            x = x * 1000;
-            x = VarFunc.roundDouble(x);
-            values.add(x);
-
-        }
-        keys.add(minKey);
-        values.add((double) minValue);
-    }
-
-    public static void conjWfw() throws IOException {
-
-        washedinput = text.replaceAll("[!.?]", "");
-        String[] words = washedinput.split("\\s+");
-
-        for (int i = 0; i < words.length; i++) {
-            words[i] = words[i].toLowerCase();
-        }
-
-        ArrayList<String> conj = new ArrayList<>();
-        InputStream one = CompEngine.class.getClassLoader().getResourceAsStream("resources/conjunctions.txt");
-
-        if (!(one == null)) {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(one));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                line = line.toLowerCase();
-                conj.add(line);
-            }
-        } else {
-            System.exit(2);
-        }
-
-        HashMap<String, Integer> repetitions = new HashMap<>();
-
-        for (String word : words) {
-            if (repetitions.containsKey(word) && !conj.contains(word))
-                repetitions.put(word, repetitions.get(word) + 1);
-            else
-                repetitions.put(word, 1);
-        }
-
-        Map<String, Integer> topThree =
-                repetitions.entrySet().stream()
-                        .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-                        .limit(3)
-                        .collect(Collectors.toMap(
-                                Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-
-        ckeys = new ArrayList<>(topThree.keySet());
-        precvalues = new ArrayList<>(topThree.values());
-        cvalues = new ArrayList<>(prevalues.size());
-
-        for (Integer precvalue : precvalues) {
-
-            x = precvalue;
-            x = x / words.length;
-            x = x * 1000;
-            x = VarFunc.roundDouble(x);
-            cvalues.add(x);
-
-        }
-    }
-
+    /*
+    Remove all line breaks from input text file & store as String
+     */
     public static void removeEnter() throws IOException, InterruptedException {
         Scanner s1 = new Scanner(System.in);
         String input = s1.nextLine();
@@ -226,6 +55,9 @@ public class CompEngine extends VarFunc {
 
     }
 
+    /*
+    Add statistics to Author Arrays/Hashmap based upon settings.
+     */
     public static void getStat() throws IOException {
 
         InputStream path = CompEngine.class.getClassLoader().getResourceAsStream(Main.tpath);
@@ -253,17 +85,249 @@ public class CompEngine extends VarFunc {
         }
     }
 
+    /*
+    Calculate Number of Characters per sentence and number of sentences per 100 characters.
+     */
+    public static void sentcarLength() {
+        int i = 0;
+        double car = 0;
+
+        //Split input by sentence enders. After this, each array element is a sentence
+        sentences = Arrays.asList(text.split("[!.?]"));
+        for (String sentence : sentences) {
+
+            //If Array Value is null, skip & count in int i.
+            if (sentence.length() == 0) {
+                i++;
+            }
+
+            /*Check if the first character in element is a space, if so - skip the
+            character and only count the following characters
+             */
+            else {
+                char x = sentence.charAt(0);
+                String y = String.valueOf(x);
+
+                if (y.equalsIgnoreCase(" ")) {
+                    car = car + sentence.substring(1).length();
+                } else {
+                    car = car + sentence.length();
+                }
+            }
+        }
+
+        //Calculate Average characters and remove all null entries in array from math by subtracting i
+        l = car / (sentences.size() - i);
+        l = VarFunc.roundDouble(l);
+
+        //Calculate Average sentences per 100 characters.
+        per100 = 100 / l;
+        per100 = VarFunc.roundDouble(per100);
+
+    }
+
+    /*
+    Same as sentcarLenght but with words
+     */
+    public static void sentwordLength() {
+        int i = 0;
+        double words = 0;
+
+        sentences = Arrays.asList(text.split("[!.?]"));
+
+        for (String sentence : sentences) {
+
+            if (sentence.length() == 0) {
+                i++;
+            } else {
+                char x = sentence.charAt(0);
+                String y = String.valueOf(x);
+
+                /*
+                Checking if first character is a space once again. This method works by
+                counting the number of spaces in the sentence and adding one. In the case of
+                the first character being a space, we just count the spaces. If not, we add 1 to spaces.
+                 */
+                if (y.equalsIgnoreCase(" ")) {
+                    long spaces = sentence.chars().filter(c -> c == (int) ' ').count();
+                    words = words + spaces;
+                } else {
+                    long spaces = sentence.chars().filter(c -> c == (int) ' ').count();
+                    words = words + spaces + 1;
+                }
+            }
+        }
+
+        /*
+        Exact Same math as sentcarLenght
+         */
+        w = words / (sentences.size() - i);
+        w = VarFunc.roundDouble(w);
+
+        sper100 = 100 / w;
+        sper100 = VarFunc.roundDouble(sper100);
+
+    }
+
+    /*
+    Finding the top 3 most used words and the number of times they're used.
+     */
+    public static void wfw() throws IOException {
+        int z = 0;
+
+        /*Removing all sentence enders from text and splitting spaces to fill an array words
+        After this, each array element is a word.
+         */
+        text = text.replaceAll("[!.?]", "");
+        String[] words = text.split("\\s+");
+
+        //Converting every element to lower case. This just makes it look better during output
+        for (int i = 0; i < words.length; i++) {
+            words[i] = words[i].toLowerCase();
+        }
+
+        //Adding all conjunctions and characters in conjunctions.txt to arraylist conj
+        ArrayList<String> conj = new ArrayList<>();
+        InputStream one = CompEngine.class.getClassLoader().getResourceAsStream("resources/conjunctions.txt");
+
+        if (!(one == null)) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(one));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                line = line.toLowerCase();
+                conj.add(line);
+            }
+        } else {
+            System.exit(2);
+        }
+
+
+        /*
+        Adding each element to a hashmap repetitions and counting duplicate entries.
+         */
+        HashMap<String, Integer> repetitions = new HashMap<>();
+
+        for (String word : words) {
+            if (repetitions.containsKey(word) && !word.equalsIgnoreCase("")) {
+                repetitions.put(word, repetitions.get(word) + 1);
+            } else if (word.equalsIgnoreCase("")) {
+                z++;
+            } else
+                repetitions.put(word, 1);
+        }
+
+        //Same as previous, but this time checking if conj contains the word and skipping if so.
+        HashMap<String, Integer> conjrep = new HashMap<>();
+
+        for (String word : words) {
+            if (conjrep.containsKey(word) && !conj.contains(word) && !word.equalsIgnoreCase("")) {
+                conjrep.put(word, conjrep.get(word) + 1);
+            } else if (word.equalsIgnoreCase("")) {
+                z++;
+            } else
+                conjrep.put(word, 1);
+        }
+
+        //Getting the number of unique words
+        uni = Double.parseDouble(String.valueOf(repetitions.size()));
+        uni = uni - z;
+
+        //Putting the top 3 most used words and the number of uses into a new LinkedHashMap (Which keeps order).
+        Map<String, Integer> topThree =
+                repetitions.entrySet().stream()
+                        .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                        .limit(3)
+                        .collect(Collectors.toMap(
+                                Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+
+        //Same as above but with conjrep.
+        Map<String, Integer> topThreeC =
+                conjrep.entrySet().stream()
+                        .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                        .limit(3)
+                        .collect(Collectors.toMap(
+                                Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+
+        /*
+        Calculating the least used word by comparing each value to each other
+         */
+        String minKey = null;
+        int minValue = Integer.MAX_VALUE;
+        for (String key : repetitions.keySet()) {
+            int value = repetitions.get(key);
+            if (value < minValue) {
+                minValue = value;
+                minKey = key;
+            }
+
+        }
+
+        //Adding all words into an array Keys and storing number of uses into an arraylist called Precvalues
+        keys = new ArrayList<>(topThree.keySet());
+        //Raw numbers of uses for most used words
+        ArrayList<Integer> prevalues = new ArrayList<>(topThree.values());
+        values = new ArrayList<>(prevalues.size());
+
+        //Calculating number of uses for each word per 1000 words and saving that value in array values.
+        double x;
+        for (Integer prevalue : prevalues) {
+
+            x = prevalue;
+            x = x / words.length;
+            x = x * 1000;
+            x = VarFunc.roundDouble(x);
+            values.add(x);
+
+        }
+
+        //Adding least used word & number of uses into arrays keys and values.
+        keys.add(minKey);
+        values.add((double) minValue);
+
+        //Exact same as above but with different source
+        ckeys = new ArrayList<>(topThreeC.keySet());
+        ArrayList<Integer> precvalues = new ArrayList<>(topThreeC.values());
+        cvalues = new ArrayList<>(prevalues.size());
+
+        for (Integer precvalue : precvalues) {
+
+            x = precvalue;
+            x = x / words.length;
+            x = x * 1000;
+            x = VarFunc.roundDouble(x);
+            cvalues.add(x);
+
+        }
+    }
+
+    /*
+    Compare all statistics
+     */
     public static void outZero() {
         outOne();
         outTwo();
     }
 
+    /*
+    Output for word for word comparison.
+     */
     public static void outOne() {
+        //Feeding data to VarFunc class which does the output.
         String m = "Top 3 Most Used Words. [Word (Num of Uses/1000 Words)]";
         VarFunc.smallComp(keys, akeys, values, avalues, Main.author, m);
+
+        //Same as above
         m = "Top 3 Most Used Words Excluding Conjunctions \nand Common Words. [Word (Num of Uses/1000 Words)]";
         VarFunc.smallComp(ckeys, ackeys, cvalues, acvalues, Main.author, m);
 
+
+        /*These big tables are essentially the same as the function above with smallComp(). I just didn't create a new
+        method because there is no performance advantages.
+
+        Just a basic rundown:
+        You have 3 columns. So you have 3 strings. The program checks the length of each string and adds spaces until it
+        reaches the character limit provided. Then, we combine all 3 strings into one big one and output it.
+         */
 
         String header1 = "|                     | YOU:";
         String header2 = Main.author.toUpperCase() + ":";

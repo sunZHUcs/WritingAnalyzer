@@ -25,14 +25,12 @@ public class Main {
                     switch (comp) {
                         case 0 -> {
                             CompEngine.wfw();
-                            CompEngine.conjWfw();
                             CompEngine.sentcarLength();
                             CompEngine.sentwordLength();
                             CompEngine.outZero();
                         }
                         case 1 -> {
                             CompEngine.wfw();
-                            CompEngine.conjWfw();
                             CompEngine.outOne();
                         }
                         case 2 -> {
@@ -58,14 +56,12 @@ public class Main {
             switch (comp) {
                 case 0 -> {
                     CompEngine.wfw();
-                    CompEngine.conjWfw();
                     CompEngine.sentcarLength();
                     CompEngine.sentwordLength();
                     CompEngine.outZero();
                 }
                 case 1 -> {
                     CompEngine.wfw();
-                    CompEngine.conjWfw();
                     CompEngine.outOne();
                 }
                 case 2 -> {
@@ -82,7 +78,6 @@ public class Main {
             CompEngine.getStat();
             CompEngine.removeEnter();
             CompEngine.wfw();
-            CompEngine.conjWfw();
             CompEngine.outOne();
         }
 

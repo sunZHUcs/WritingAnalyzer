@@ -4,16 +4,32 @@ import java.util.ArrayList;
 
 public class VarFunc {
 
+
+    //Rounds a double to 2 decimal values
     public static Double roundDouble(Double x) {
+
+        //BigDecimal does most of the work. I would think this is self explanatory.
         BigDecimal b1 = new BigDecimal(Double.toString(x));
         b1 = b1.setScale(2, RoundingMode.HALF_UP);
         x = b1.doubleValue();
         return x;
     }
 
+    //This method just combines strings. It looks cleaner than doing it over and over again in compEngine.
     public static String appendMachine(String one, String two, String three, String separator, String end) {
         return one + separator + two + separator + three + end;
     }
+
+    /*
+    This method works by separating every string into columns and then checking their length and adding spaces if needed.
+    For example:
+    If I had a table with 2 columns it would work like this:
+
+    String part1 = "Some statistic: "
+    String part2 = "Some other statistic
+
+    The program will count the length of each string and add spaces until a certain character limit is reached, then it will return the string.
+ */
 
     public static String constAppend(String x, int y) {
         StringBuilder s1 = new StringBuilder();
@@ -26,6 +42,7 @@ public class VarFunc {
         return String.valueOf(s1);
     }
 
+    //This method get's the percentage of your words/characters compared to the selected author.
     public static String mathEngine(Double x, Double y) {
         double z;
         z = x / y;
@@ -36,7 +53,10 @@ public class VarFunc {
         return k;
     }
 
+    //Output for small tables. Utilizes constapend mostly.
     public static void smallComp(ArrayList<String> k, ArrayList<String> aw, ArrayList<Double> v, ArrayList<String> av, String aut, String method) {
+
+
         String break1 = "============================================";
         String break2 = "--------------------------------------------";
         String separator = " || ";

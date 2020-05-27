@@ -15,9 +15,12 @@
       <w>avalues</w>
       <w>awords</w>
       <w>ckeys</w>
+      <w>conjrep</w>
+      <w>constapend</w>
       <w>cvalues</w>
       <w>daraz</w>
       <w>devmode</w>
+      <w>enders</w>
       <w>excount</w>
       <w>getval</w>
       <w>ihinsatva</w>
@@ -28,6 +31,7 @@
       <w>jkrowling</w>
       <w>jstats</w>
       <w>jwords</w>
+      <w>lenght</w>
       <w>patrickrothfuss</w>
       <w>pcstats</w>
       <w>pcwords</w>
